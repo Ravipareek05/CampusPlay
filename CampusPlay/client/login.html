@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CampusPlay - The Arena Awaits You</title>
+    <link rel="stylesheet" href="css/login.css" />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+      rel="stylesheet"
+    />
+    <script src="https://accounts.google.com/gsi/client" async defer></script> 
+    <!-- this is new line add by ravi -->
+  </head>
+  <body>
+    <!-- Header Navigation -->
+    <header class="header">
+      <nav class="nav container">
+        <div class="nav__brand">
+          <!-- <a href="index.html" style="text-decoration: none; color: inherit;"></a> -->
+          <div class="logo">
+            <i class="fas fa-gamepad"></i>
+            <span>CampusPlay</span>
+          </div>
+        </div>
+
+        <ul class="nav__menu" id="nav-menu">
+          <li><a href="index.html" class="nav__link">Home</a></li>
+          <li><a href="#about" class="nav__link">About Us</a></li>
+          <li><a href="#features" class="nav__link">Features</a></li>
+          <li><a href="#contact" class="nav__link">Contact Us</a></li>
+          <li>
+            <a
+              href="#"
+              class="nav__link nav__link--cta"
+              onclick="showAuthModal('register')"
+              >Register</a
+            >
+          </li>
+        </ul>
+
+        <div class="nav__actions">
+          <button class="nav__search"><i class="fas fa-search"></i></button>
+          <button class="nav__toggle" id="nav-toggle">
+            <i class="fas fa-bars"></i>
+          </button>
+        </div>
+      </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <main>
+      <section class="hero" id="home">
+        <div class="hero__container container">
+          <div class="hero__content">
+            <div class="hero__text">
+              <h1 class="hero__title">THE ARENA AWAITS YOU!</h1>
+              <p class="hero__subtitle">
+                Join thousands of gamers in the ultimate campus gaming
+                experience. Compete, connect, and conquer in tournaments that
+                matter.
+              </p>
+
+              <div class="hero__stats">
+                <div class="stat">
+                  <span class="stat__number">500</span>
+                  <span class="stat__label">Players Online</span>
+                </div>
+                <div class="stat">
+                  <span class="stat__number">10</span>
+                  <span class="stat__label">Tournaments</span>
+                </div>
+                <div class="stat">
+                  <span class="stat__number">3</span>
+                  <span class="stat__label">Active Games</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Login Form -->
+            <div class="hero__form">
+              <div class="login-card">
+                <h3>Welcome Back</h3>
+                <form id="login-form" class="auth-form">
+                  <div class="form-group">
+                    <div class="input-wrapper">
+                      <i class="fas fa-envelope input-icon"></i>
+                      <input
+                        type="email"
+                        class="form-control"
+                        placeholder="Email address"
+                        required
+                      />
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <div class="input-wrapper">
+                      <i class="fas fa-lock input-icon"></i>
+                      <input
+                        type="password"
+                        class="form-control"
+                        placeholder="Password"
+                        required
+                      />
+                      <button type="button" class="password-toggle">
+                        <i class="fas fa-eye"></i>
+                      </button>
+                    </div>
+                  </div>
+
+                  <button
+                    type="submit"
+                    class="btn btn--primary btn--full-width login-btn"
+                  >
+                    <span class="btn-text">Get Started</span>
+                    <i class="fas fa-spinner fa-spin btn-loading hidden"></i>
+                  </button>
+
+                  <div class="form-footer">
+                    <a href="#" class="forgot-link">Forgot Password?</a>
+                  </div>
+
+                  <!-- <div class="social-login">
+                    <p>Or continue with</p>
+                    <div class="social-buttons">
+                      <button type="button" class="social-btn google-btn">
+                        <i class="fab fa-google"></i>
+                      </button>
+                      <button type="button" class="social-btn discord-btn">
+                        <i class="fab fa-discord"></i>
+                      </button>
+                    </div>
+                  </div> -->
+                  <button type="button" class="google-signin-btn">
+                    <img
+                      src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg"
+                      alt="Google logo"
+                    />
+                    Continue with Google
+                  </button>
+
+                  <p class="signup-link">
+                    Don't have an account?
+                    <a href="#" onclick="showAuthModal('register')">Sign up</a>
+                  </p>
+                </form>
+              </div>
+            </div>
+          </div>
+
+          <!-- Gaming Controller Visual -->
+          <div class="hero__visual">
+            <div class="controller-container">
+              <img
+                src="images\controller.png"
+                alt="Gaming Controller"
+                class="controller-image"
+              />
+              <div class="controller-glow"></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Features Section -->
+      <section class="features" id="features">
+        <div class="container">
+          <h2 class="section-title">Why Choose CampusPlay?</h2>
+          <div class="features-grid">
+            <div class="feature-card">
+              <div class="feature-icon">
+                <i class="fas fa-trophy"></i>
+              </div>
+              <h3>Tournament System</h3>
+              <p>Compete in organized tournaments with prizes</p>
+            </div>
+            <div class="feature-card">
+              <div class="feature-icon">
+                <i class="fas fa-video"></i>
+              </div>
+              <h3>Live Streaming</h3>
+              <p>Stream your gameplay to the community</p>
+            </div>
+            <div class="feature-card">
+              <div class="feature-icon">
+                <i class="fas fa-users"></i>
+              </div>
+              <h3>Social Gaming</h3>
+              <p>Connect with players worldwide</p>
+            </div>
+            <div class="feature-card">
+              <div class="feature-icon">
+                <i class="fas fa-star"></i>
+              </div>
+              <h3>Achievement System</h3>
+              <p>Unlock rewards as you play</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Popular Games -->
+      <section class="games">
+        <div class="container">
+          <h2 class="section-title">Popular Games</h2>
+          <div class="games-grid">
+            <div class="game-card">
+              <div class="game-image">
+                <img src="images\download.jpeg" alt="Game Image" />
+              </div>
+              <div class="game-info">
+                <h3>BGMI</h3>
+                <p class="game-players">500 players</p>
+                <button class="btn btn--primary">Play Now</button>
+              </div>
+            </div>
+            <div class="game-card">
+              <div class="game-image">
+                <img src="images\download (1).jpeg" alt="Game Image" />
+              </div>
+              <div class="game-info">
+                <h3>Valorant</h3>
+                <p class="game-players">500 players</p>
+                <button class="btn btn--primary">Play Now</button>
+              </div>
+            </div>
+            <div class="game-card">
+              <div class="game-image">
+                <img src="images\download (2).jpeg" alt="Game Image" />"
+              </div>
+              <div class="game-info">
+                <h3>Clash Royale</h3>
+                <p class="game-players">500 players</p>
+                <button class="btn btn--primary">Play Now</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Community Stats -->
+      <section class="stats">
+        <div class="container">
+          <div class="stats-grid">
+            <div class="stat-card">
+              <div class="stat-number">1</div>
+              <div class="stat-label">Countries</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-number">500</div>
+              <div class="stat-label">Active Players</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-number">10</div>
+              <div class="stat-label">Tournaments</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-number">3</div>
+              <div class="stat-label">Games</div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Authentication Modal -->
+    <div class="modal hidden" id="auth-modal">
+      <div class="modal__overlay" onclick="closeAuthModal()"></div>
+      <div class="modal__content">
+        <button class="modal__close" onclick="closeAuthModal()">
+          <i class="fas fa-times"></i>
+        </button>
+
+        <!-- Register Form -->
+        <div class="auth-container" id="register-form-container">
+          <h2>Join the Arena</h2>
+          <form id="register-form" class="auth-form">
+            <div class="form-group">
+              <div class="input-wrapper">
+                <i class="fas fa-user input-icon"></i>
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder="Full Name"
+                  required
+                />
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="input-wrapper">
+                <i class="fas fa-envelope input-icon"></i>
+                <input
+                  type="email"
+                  class="form-control"
+                  placeholder="Email address"
+                  required
+                />
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="input-wrapper">
+                <i class="fas fa-lock input-icon"></i>
+                <input
+                  type="password"
+                  class="form-control"
+                  placeholder="Password"
+                  required
+                />
+                <button type="button" class="password-toggle">
+                  <i class="fas fa-eye"></i>
+                </button>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="input-wrapper">
+                <i class="fas fa-lock input-icon"></i>
+                <input
+                  type="password"
+                  class="form-control"
+                  placeholder="Confirm Password"
+                  required
+                />
+              </div>
+            </div>
+            <!-- <button
+              type="submit"
+              class="btn btn--primary btn--full-width register-btn"
+            >
+              <span class="btn-text">Create Account</span>
+              <i class="fas fa-spinner fa-spin btn-loading hidden"></i>
+            </button>
+            <p class="login-link">
+              Already have an account?
+              <a href="#" onclick="showAuthModal('login')">Sign in</a>
+            </p> -->
+            <button
+              type="submit"
+              class="btn btn--primary btn--full-width register-btn"
+            >
+              <span class="btn-text">Create Account</span>
+              <i class="fas fa-spinner fa-spin btn-loading hidden"></i>
+            </button>
+
+            <div class="auth-separator">
+              <span>OR</span>
+            </div>
+            <button type="button" class="google-signin-btn">
+              <img
+                src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg"
+                alt="Google logo"
+              />
+              Continue with Google
+            </button>
+            <p class="login-link">
+              Already have an account?
+              <a href="#" onclick="showAuthModal('login')">Sign in</a>
+            </p>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <!-- Toast Notifications -->
+    <div class="toast-container" id="toast-container"></div>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-content">
+          <div class="footer-brand">
+            <div class="logo">
+              <i class="fas fa-gamepad"></i>
+              <span>CampusPlay</span>
+            </div>
+            <p>The ultimate gaming platform for campus communities.</p>
+          </div>
+          <div class="footer-links">
+            <div class="footer-section">
+              <h4>Platform</h4>
+              <a href="#">Games</a>
+              <a href="#">Tournaments</a>
+              <a href="#">Leaderboards</a>
+            </div>
+            <div class="footer-section">
+              <h4>Community</h4>
+              <a href="#">Discord</a>
+              <a href="#">Forums</a>
+              <a href="#">Support</a>
+            </div>
+            <div class="footer-section">
+              <h4>Company</h4>
+              <a href="#">About</a>
+              <a href="#">Careers</a>
+              <a href="#">Contact</a>
+            </div>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <p>&copy; 2025 CampusPlay. All rights reserved.</p>
+          <div class="social-links">
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-discord"></i></a>
+            <a href="#"><i class="fab fa-twitch"></i></a>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <script src="login.js"></script>
+  </body>
+</html>

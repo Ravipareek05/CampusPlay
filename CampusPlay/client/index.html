@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CampusPlay - College Gaming Platform</title>
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <header class="main-header">
+      <div class="container">
+        <div class="logo">
+          <i class="fa-solid fa-gamepad" style="color: #fd121d"> </i>
+          <!-- <img src="images/ai-powered-device-concept.jpg" alt="CampusPlay Logo"> -->
+          <span>CampusPlay</span>
+        </div>
+        <nav class="main-nav">
+          <ul>
+            <li><a href="#games">Games</a></li>
+            <li><a href="#live">Live</a></li>
+            <li><a href="#tournaments">Tournaments</a></li>
+            <li><a href="#community">Community</a></li>
+          </ul>
+        </nav>
+        <div class="user-actions">
+          <span class="notification-icon"><i class="fas fa-bell"></i></span>
+          <div class="user-dropdown" id="user-dropdown">
+            <span class="user-initials" id="user-initials">HK</span>
+            <div class="dropdown-menu" id="dropdown-menu">
+              <a href="login.html" class="dropdown-item" id="login-link"
+                >Profile</a
+              >
+              <a href="login.html" class="dropdown-item" id="signout-link"
+                >Sign Out</a
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero-section hero-community">
+        <div class="container">
+          <div class="hero-text-content">
+            <p class="live-status">Now Live on Campus</p>
+            <h1>Game with your</h1>
+            <h1><span class="highlight">Campus Community</span></h1>
+            <p>
+              Connect, compete, and conquer with fellow students. Join
+              tournaments, form teams, and climb the campus leaderboards in your
+              favorite games.
+            </p>
+            <div class="hero-buttons">
+              <button class="btn btn-primary">Start Playing</button>
+              <button class="btn btn-secondary">Browse Games</button>
+            </div>
+            <div class="stats-bar">
+              <div class="stat-item">
+                <strong>500</strong><span>Active Players</span>
+              </div>
+              <div class="stat-item">
+                <strong>3</strong><span>Live Games</span>
+              </div>
+              <div class="stat-item">
+                <strong>10</strong><span>Tournaments</span>
+              </div>
+            </div>
+          </div>
+          <div class="hero-image-content">
+            <div class="video-wrapper">
+              <video
+                src="https://videos.pexels.com/video-files/7046607/7046607-hd_1280_720_25fps.mp4"
+                class="live-event-thumbnail"
+                autoplay
+                loop
+                muted
+                playsinline
+              ></video>
+              <div class="live-tag">LIVE</div>
+            </div>
+            <p class="event-title">Inter Branch Finals</p>
+            <p class="event-details">
+              Computer Engineering vs Mechanical Engineering
+            </p>
+            <div class="event-stats">
+              <span>15 <small>Computer Engineering</small></span>
+              <span>12 <small>Mechanical Engineering</small></span>
+            </div>
+            <button class="btn btn-watch">Watch (234)</button>
+          </div>
+        </div>
+      </section>
+
+      <section class="popular-games-section" id="games">
+        <div class="container">
+          <h2>Popular Games on Campus</h2>
+          <p class="section-description">
+            Join thousands of students in competitive matches, casual games, and
+            tournaments
+          </p>
+          <div class="game-cards-grid">
+            <div class="game-card">
+              <div class="game-thumbnail">
+                <img
+                  src="images\HD-wallpaper-bgmi-trending-pubg-bgmi-logo-bgmi-iammsa-pubg-thumbnail.jpg"
+                  alt="Battlegrounds Mobile India"
+                />
+                <span class="game-status popular">Popular</span>
+              </div>
+              <h3>Battlegrounds Mobile India</h3>
+              <p class="game-type">Online Multiplayer</p>
+              <div class="game-meta">
+                <span class="rating">⭐️ 4.8</span>
+                <span class="players">🎮 1,247 online</span>
+                <span class="time">🕒 25-45 min</span>
+              </div>
+              <button class="btn btn-secondary full-width join-game-btn">
+                Join Game
+              </button>
+            </div>
+            <div class="game-card">
+              <div class="game-thumbnail">
+                <img src="images/download (1).jpeg" alt="Valorant" />
+                <span class="game-status tournament">Tournament</span>
+              </div>
+              <h3>Valorant</h3>
+              <p class="game-type">Strategy</p>
+              <div class="game-meta">
+                <span class="rating">⭐️ 4.5</span>
+                <span class="players">🎮 876 online</span>
+                <span class="time">🕒 50-60 min</span>
+              </div>
+              <button class="btn btn-secondary full-width join-game-btn">
+                Join Game
+              </button>
+            </div>
+            <div class="game-card">
+              <div class="game-thumbnail">
+                <img src="images/download (2).jpeg" alt="Clash Royale" />
+                <span class="game-status hot">Hot</span>
+              </div>
+              <h3>Clash Royale</h3>
+              <p class="game-type">Fight</p>
+              <div class="game-meta">
+                <span class="rating">⭐️ 4.9</span>
+                <span class="players">🎮 2,103 online</span>
+                <span class="time">🕒 10-15 min</span>
+              </div>
+              <button class="btn btn-secondary full-width join-game-btn">
+                Join Game
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="featured-streamer-section" id="live">
+        <div class="container">
+          <div class="streamer-layout">
+            <div class="main-stream-player">
+              <div class="stream-video-wrapper">
+                <!-- ID added to iframe -->
+                <iframe
+                  id="main-stream-player"
+                  src=""
+                  frameborder="0"
+                  allow="autoplay; encrypted-media"
+                  allowfullscreen
+                >
+                </iframe>
+                <div class="live-indicator">LIVE</div>
+              </div>
+              <div class="stream-info">
+                <div class="streamer-details">
+                  <!-- ID added to avatar -->
+                  <img
+                    src="images\avatar1.jpeg"
+                    alt="Streamer Avatar"
+                    class="streamer-avatar"
+                    id="streamer-avatar"
+                  />
+                  <div>
+                    <!-- ID added to name and title -->
+                    <h3 class="streamer-name" id="streamer-name"></h3>
+                    <p class="stream-title" id="stream-title"></p>
+                  </div>
+                </div>
+                <div class="stream-stats">
+                  <!-- ID added to viewer count -->
+                  <span class="viewer-count" id="viewer-count"></span>
+                  <button class="btn btn-primary">Subscribe</button>
+                </div>
+              </div>
+            </div>
+            <!-- ID added to the sidebar list container -->
+            <div class="sidebar-stream-list" id="sidebar-stream-list">
+              <!-- Content will be generated by JavaScript -->
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="live-activity-section">
+        <div class="container">
+          <h2>⚡ Live Campus Activity</h2>
+          <div class="activity-cards">
+            <div class="activity-card">
+              <span class="user-avatar" style="background-color: #5dade2"
+                >HK</span
+              >
+              <div class="activity-details">
+                <p class="username">HarshitKamra</p>
+                <p class="game-played">Battlegrounds Mobile India</p>
+              </div>
+              <span class="status victory">Victory</span>
+              <span class="time-ago">2m ago</span>
+              <span class="sr-change positive">+25 SR</span>
+            </div>
+            <div class="activity-card">
+              <span class="user-avatar" style="background-color: #af7ac5"
+                >RP</span
+              >
+              <div class="activity-details">
+                <p class="username">Ravi Pareek</p>
+                <p class="game-played">Clash Royale</p>
+              </div>
+              <span class="status defeat">Defeat</span>
+              <span class="time-ago">5m ago</span>
+              <span class="sr-change negative">-18 SR</span>
+            </div>
+            <div class="activity-card">
+              <span class="user-avatar" style="background-color: #f5b041"
+                >GD</span
+              >
+              <div class="activity-details">
+                <p class="username">Gaurika Dua</p>
+                <p class="game-played">Valorant</p>
+              </div>
+              <span class="status victory">Victory</span>
+              <span class="time-ago">8m ago</span>
+              <span class="sr-change positive">+32 SR</span>
+            </div>
+          </div>
+          <button class="btn btn-secondary full-width view-all-activity-btn">
+            View All Activity
+          </button>
+        </div>
+      </section>
+
+      <section class="rankings-tournaments-section" id="tournaments">
+        <div class="container">
+          <h2>Campus Rankings & Tournaments</h2>
+          <p class="section-description">
+            Compete for glory, climb the leaderboards, and win prizes in
+            official tournaments
+          </p>
+          <div class="tabs">
+            <button class="tab-button active">Leaderboard</button>
+            <button class="tab-button">Tournaments</button>
+            <button class="tab-button">Achievements</button>
+          </div>
+          <div class="rankings-content">
+            <div class="leaderboard-card">
+              <h3>🏆 Top Campus Players</h3>
+              <ul>
+                <li>
+                  <span class="rank-icon">👑</span>
+                  <div class="player-info">
+                    <p>HarshitKamra</p>
+                    <small>Computer Engineering</small>
+                  </div>
+                  <span class="player-stats"><strong>2847</strong> wins</span>
+                </li>
+                <li>
+                  <span class="rank-icon">🥈</span>
+                  <div class="player-info">
+                    <p>Ravi Pareek</p>
+                    <small>Computer Engineering</small>
+                  </div>
+                  <span class="player-stats"><strong>2712</strong> wins</span>
+                </li>
+                <li>
+                  <span class="rank-icon">🥉</span>
+                  <div class="player-info">
+                    <p>Gaurika</p>
+                    <small>Computer Engineering</small>
+                  </div>
+                  <span class="player-stats"><strong>2650</strong> wins</span>
+                </li>
+                <li>
+                  <span class="rank-icon">🏅</span>
+                  <div class="player-info">
+                    <p>Harina</p>
+                    <small>Computer Engineering</small>
+                  </div>
+                  <span class="player-stats"><strong>2550</strong> wins</span>
+                </li>
+                <li>
+                  <span class="rank-icon">🏅</span>
+                  <div class="player-info">
+                    <p>Sakshi</p>
+                    <small>Computer Engineering</small>
+                  </div>
+                  <span class="player-stats"><strong>2000</strong> wins</span>
+                </li>
+              </ul>
+            </div>
+            <div class="user-rank-card">
+              <h3>Your Rank</h3>
+              <div class="rank-display">
+                <div class="user-initials large-avatar">HK</div>
+                <div class="rank-number">#1</div>
+                <p class="user-name">Harshit Kamra</p>
+                <p class="user-dept">Computer Engineering</p>
+                <div class="rating-bar">
+                  <p>Rating: <strong>2,847</strong></p>
+                  <p class="next-rank">153 points to next rank</p>
+                  <div class="progress-bar"><div style="width: 70%"></div></div>
+                </div>
+              </div>
+              <div class="weekly-stats">
+                <h3>This Week</h3>
+                <p>Games Played: <span>12</span></p>
+                <p>Win Rate: <span class="positive">75%</span></p>
+                <p>Rating Change: <span class="positive">+45</span></p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="community-section" id="community">
+        <div class="container">
+          <h2>Join the Campus Gaming Community</h2>
+          <p class="section-description">
+            Connect with fellow gamers, join teams, attend events, and share
+            your gaming journey.
+          </p>
+          <div class="community-grid">
+            <div class="featured-teams-card">
+              <h3>Featured Teams</h3>
+              <ul>
+                <li>
+                  <span class="team-initials">SS</span>
+                  <div class="team-info">
+                    <p>Sigma Squad</p>
+                    <small>8 members • 76% win rate</small>
+                  </div>
+                  <button class="btn btn-secondary btn-sm">Join</button>
+                </li>
+                <li>
+                  <span class="team-initials">VE</span>
+                  <div class="team-info">
+                    <p>Vortex Esports</p>
+                    <small>12 members • 82% win rate</small>
+                  </div>
+                  <button class="btn btn-secondary btn-sm">Join</button>
+                </li>
+                <li>
+                  <span class="team-initials">GG</span>
+                  <div class="team-info">
+                    <p>Giga Gamers</p>
+                    <small>5 members • 65% win rate</small>
+                  </div>
+                  <button class="btn btn-secondary btn-sm">Join</button>
+                </li>
+              </ul>
+              <button class="btn btn-secondary full-width">
+                Browse All Teams
+              </button>
+            </div>
+            <div class="community-feed-card">
+              <h3>Community Feed</h3>
+              <div class="feed-post">
+                <span class="user-avatar" style="background-color: #af7ac5"
+                  >RP</span
+                >
+                <div class="post-content">
+                  <p class="post-header">
+                    <strong>Ravi Pareek</strong> <span>@ Battle Arena</span>
+                    <small>2 hours ago</small>
+                  </p>
+                  <p class="post-text">
+                    Just won my first tournament! Thank you to everyone who
+                    helped me practice. This community is amazing! 🎉
+                  </p>
+                  <div class="post-actions">
+                    <span>❤️ 47</span>
+                    <span>💬 12</span>
+                    <span>🔗 Share</span>
+                  </div>
+                </div>
+              </div>
+              <div class="feed-post">
+                <span class="user-avatar" style="background-color: #5dade2"
+                  >HK</span
+                >
+                <div class="post-content">
+                  <p class="post-header">
+                    <strong>Harshit Kamra</strong> <span>@ Student Squad</span>
+                    <small>3 hours ago</small>
+                  </p>
+                  <p class="post-text">
+                    Looking for two more players for our squad. Must be a team
+                    player! DM me.
+                  </p>
+                  <div class="post-actions">
+                    <span>❤️ 15</span>
+                    <span>💬 5</span>
+                    <span>🔗 Share</span>
+                  </div>
+                </div>
+              </div>
+              <div class="feed-post">
+                <div class="community_chat">
+                  <p class="post-text">
+                    Want to be part of this amazing family? Click here to join
+                    and start your journey!
+                    <br />
+                    <a
+                      href="https://chat.whatsapp.com/Iz3JZBQfdce0LZaMRdMcut"
+                      class="join-community-link"
+                      target="_blank"
+                      >Join Now!</a
+                    >
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="upcoming-events-card">
+            <h3>Upcoming Events</h3>
+            <ul>
+              <li>
+                <div class="event-details">
+                  <p class="event-time-place">
+                    Friday, 7:00 PM @ Student Center
+                  </p>
+                  <p class="event-title">Tournament Watch Party</p>
+                  <p class="event-description">
+                    Watch the championship finals together
+                  </p>
+                </div>
+                <button class="btn btn-primary btn-sm rsvp">RSVP</button>
+                <span class="attendees">45/60 attending</span>
+              </li>
+              <li>
+                <div class="event-details">
+                  <p class="event-time-place">Saturday, 1:00 PM @ Gaming Lab</p>
+                  <p class="event-title">Open Play Day</p>
+                  <p class="event-description">
+                    Casual matches for all skill levels
+                  </p>
+                </div>
+                <button class="btn btn-primary btn-sm rsvp">RSVP</button>
+                <span class="attendees">32/50 attending</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="main-footer">
+      <div class="container">
+        <div class="footer-col about-col">
+          <div class="logo">
+            <a href="#"
+              ><i class="fa-solid fa-gamepad" style="color: #ff0000"></i
+            ></a>
+            <!-- <img src="images/ai-powered-device-concept.jpg" alt="CampusPlay Logo"> -->
+            <span>CampusPlay</span>
+          </div>
+          <p>
+            The ultimate gaming platform connecting college students through
+            competitive gaming, tournaments, and community events.
+          </p>
+          <div class="social-links">
+            <a href="#"
+              ><i class="fa-brands fa-instagram" style="color: #ff0000"></i
+            ></a>
+            <a href="#"
+              ><i class="fa-brands fa-twitter" style="color: #ff0000"></i
+            ></a>
+            <a href="#"
+              ><i class="fa-brands fa-youtube" style="color: #ff0000"></i
+            ></a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h3>Games</h3>
+          <ul>
+            <li><a href="#">Battle Arena Legends</a></li>
+            <li><a href="#">Campus Conquest</a></li>
+            <li><a href="#">Student Squad</a></li>
+            <li><a href="#">Browse All Games</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h3>Community</h3>
+          <ul>
+            <li><a href="#">Teams</a></li>
+            <li><a href="#">Tournaments</a></li>
+            <li><a href="#">Events</a></li>
+            <li><a href="#">Leaderboards</a></li>
+            <li><a href="#">Forum</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h3>Support</h3>
+          <ul>
+            <li><a href="#">Help Center</a></li>
+            <li><a href="#">Game Rules</a></li>
+            <li><a href="#">Report Issue</a></li>
+            <li><a href="#">Contact Us</a></li>
+          </ul>
+          <p>support@campusplay.edu</p>
+          <p>787611####</p>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Link to the new JavaScript file -->
+    <script src="js/script.js"></script>
+  </body>
+</html>

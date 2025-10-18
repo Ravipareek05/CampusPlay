@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tournaments - CampusPlay</title>
+    <link rel="stylesheet" href="css/tournaments.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="page-wrapper">
+        <aside class="sidebar">
+            <div class="sidebar__logo">
+                <i class="fas fa-gamepad"></i>
+                <span>CampusPlay</span>
+            </div>
+            <nav class="sidebar__nav">
+                <a href="index.html" class="nav-item"><i class="fas fa-home"></i> Dashboard</a>
+                <a href="tournaments.html" class="nav-item active"><i class="fas fa-trophy"></i> Tournaments</a>
+                <a href="#" class="nav-item"><i class="fas fa-store"></i> Shop</a>
+                <a href="#" class="nav-item"><i class="fas fa-chart-bar"></i> Leaderboards</a>
+            </nav>
+            <div class="sidebar__footer">
+                <a href="login.html" class="logout-button">Logout</a>
+            </div>
+        </aside>
+
+        <main class="main-content">
+            <header class="main-header">
+                <div class="breadcrumbs">
+                    <span><a href="index.html">Games</a></span>
+                    <i class="fas fa-chevron-right"></i>
+                    <span id="game-breadcrumb"></span>
+                </div>
+                <div class="header-actions">
+                    <div class="search-bar">
+                        <i class="fas fa-search"></i>
+                        <input type="text" placeholder="Search for tournaments...">
+                    </div>
+                    <div class="user-profile">
+                        <span id="user-initials"></span>
+                        <span id="user-name"></span>
+                    </div>
+                </div>
+            </header>
+
+            <div class="content-body">
+                <section class="game-banner" id="game-banner">
+                    <div class="banner-content">
+                        <h1 id="game-title"></h1>
+                        <h2>Compete in <span id="game-subtitle"></span></h2>
+                        <div class="banner-stats">
+                            <div class="stat">
+                                <span class="stat-value" id="matches-played">3200</span>
+                                <span class="stat-label">Matches played</span>
+                            </div>
+                            <div class="stat">
+                                <span class="stat-value" id="tournaments-held">235</span>
+                                <span class="stat-label">Tournaments held</span>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="tournaments-list">
+                    <h3><i class="fas fa-star"></i> Featured Tournaments</h3>
+                    <div class="tournaments-grid" id="featured-tournaments-grid">
+                        </div>
+                </section>
+                
+                <section class="tournaments-list">
+                    <h3><i class="far fa-calendar-alt"></i> Upcoming</h3>
+                     <div class="tournaments-grid" id="upcoming-tournaments-grid">
+                        </div>
+                </section>
+            </div>
+        </main>
+    </div>
+
+    <div class="toast-container" id="toast-container"></div>
+
+    <script src="js/tournaments.js"></script>
+</body>
+</html>
