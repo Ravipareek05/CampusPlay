@@ -10,14 +10,11 @@
       rel="stylesheet"
     />
     <script src="https://accounts.google.com/gsi/client" async defer></script> 
-    <!-- this is new line add by ravi -->
-  </head>
+    </head>
   <body>
-    <!-- Header Navigation -->
     <header class="header">
       <nav class="nav container">
         <div class="nav__brand">
-          <!-- <a href="index.html" style="text-decoration: none; color: inherit;"></a> -->
           <div class="logo">
             <i class="fas fa-gamepad"></i>
             <span>CampusPlay</span>
@@ -48,7 +45,6 @@
       </nav>
     </header>
 
-    <!-- Hero Section -->
     <main>
       <section class="hero" id="home">
         <div class="hero__container container">
@@ -77,7 +73,6 @@
               </div>
             </div>
 
-            <!-- Login Form -->
             <div class="hero__form">
               <div class="login-card">
                 <h3>Welcome Back</h3>
@@ -90,6 +85,7 @@
                         class="form-control"
                         placeholder="Email address"
                         required
+                        id="login-email"
                       />
                     </div>
                   </div>
@@ -102,6 +98,7 @@
                         class="form-control"
                         placeholder="Password"
                         required
+                        id="login-password"
                       />
                       <button type="button" class="password-toggle">
                         <i class="fas fa-eye"></i>
@@ -121,17 +118,6 @@
                     <a href="#" class="forgot-link">Forgot Password?</a>
                   </div>
 
-                  <!-- <div class="social-login">
-                    <p>Or continue with</p>
-                    <div class="social-buttons">
-                      <button type="button" class="social-btn google-btn">
-                        <i class="fab fa-google"></i>
-                      </button>
-                      <button type="button" class="social-btn discord-btn">
-                        <i class="fab fa-discord"></i>
-                      </button>
-                    </div>
-                  </div> -->
                   <button type="button" class="google-signin-btn">
                     <img
                       src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg"
@@ -149,7 +135,6 @@
             </div>
           </div>
 
-          <!-- Gaming Controller Visual -->
           <div class="hero__visual">
             <div class="controller-container">
               <img
@@ -163,7 +148,6 @@
         </div>
       </section>
 
-      <!-- Features Section -->
       <section class="features" id="features">
         <div class="container">
           <h2 class="section-title">Why Choose CampusPlay?</h2>
@@ -200,7 +184,6 @@
         </div>
       </section>
 
-      <!-- Popular Games -->
       <section class="games">
         <div class="container">
           <h2 class="section-title">Popular Games</h2>
@@ -239,7 +222,6 @@
         </div>
       </section>
 
-      <!-- Community Stats -->
       <section class="stats">
         <div class="container">
           <div class="stats-grid">
@@ -264,7 +246,6 @@
       </section>
     </main>
 
-    <!-- Authentication Modal -->
     <div class="modal hidden" id="auth-modal">
       <div class="modal__overlay" onclick="closeAuthModal()"></div>
       <div class="modal__content">
@@ -272,7 +253,6 @@
           <i class="fas fa-times"></i>
         </button>
 
-        <!-- Register Form -->
         <div class="auth-container" id="register-form-container">
           <h2>Join the Arena</h2>
           <form id="register-form" class="auth-form">
@@ -284,6 +264,7 @@
                   class="form-control"
                   placeholder="Full Name"
                   required
+                  id="register-name"
                 />
               </div>
             </div>
@@ -295,6 +276,7 @@
                   class="form-control"
                   placeholder="Email address"
                   required
+                  id="register-email"
                 />
               </div>
             </div>
@@ -306,6 +288,7 @@
                   class="form-control"
                   placeholder="Password"
                   required
+                  id="register-password"
                 />
                 <button type="button" class="password-toggle">
                   <i class="fas fa-eye"></i>
@@ -320,20 +303,10 @@
                   class="form-control"
                   placeholder="Confirm Password"
                   required
+                  id="register-confirm-password"
                 />
               </div>
             </div>
-            <!-- <button
-              type="submit"
-              class="btn btn--primary btn--full-width register-btn"
-            >
-              <span class="btn-text">Create Account</span>
-              <i class="fas fa-spinner fa-spin btn-loading hidden"></i>
-            </button>
-            <p class="login-link">
-              Already have an account?
-              <a href="#" onclick="showAuthModal('login')">Sign in</a>
-            </p> -->
             <button
               type="submit"
               class="btn btn--primary btn--full-width register-btn"
@@ -361,10 +334,8 @@
       </div>
     </div>
 
-    <!-- Toast Notifications -->
     <div class="toast-container" id="toast-container"></div>
 
-    <!-- Footer -->
     <footer class="footer">
       <div class="container">
         <div class="footer-content">
@@ -407,6 +378,6 @@
       </div>
     </footer>
 
-    <script src="login.js"></script>
+    <script src="js/login.js"></script>
   </body>
 </html>

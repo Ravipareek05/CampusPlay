@@ -22,11 +22,13 @@ exports.create = async (req, res) => {
 };
 
 exports.list = async (_req, res) => {
+        console.log("Trying to list tournaments!!")
   // FIX: Added try...catch block
   try {
     const list = await Tournament.find()
       .sort({ date: 1 })
       .populate("createdBy", "name");
+    // const list = ["ravi", "fuddi"];
     res.json(list);
   } catch (err) {
     console.error(err);
