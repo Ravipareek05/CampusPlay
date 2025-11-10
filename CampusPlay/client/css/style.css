@@ -63,6 +63,7 @@ img {
    Buttons
    ========================================================================== */
 .btn {
+  display: inline-block; /* ✅ Add this line */
   padding: var(--spacing-sm) var(--spacing-md);
   border: none;
   border-radius: 5px;
@@ -70,6 +71,7 @@ img {
   font-weight: 600;
   transition: all 0.3s ease;
   font-size: 1em;
+  text-decoration: none; /* ✅ Add this too, removes underline if <a> */
 }
 
 .btn-primary {
