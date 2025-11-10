@@ -391,7 +391,206 @@
 //     if (e.key === 'campusPlayUser') applyAuthUI();
 //   });
 // });
+
+
+
+
 // js/script.js - consolidated version
+// document.addEventListener('DOMContentLoaded', () => {
+//   console.log('[app] init');
+
+//   // ---------- STREAMERS (data + UI) ----------
+//   const streamers = [
+//     { id: 1, name: 'Harshit', game: 'Clash Royale', viewers: '12.8k', avatar: 'images/download (2).jpeg', videoUrl: 'https://www.youtube.com/embed/-DwaRcz5QvI?autoplay=1&mute=1&controls=0&loop=1&playlist=-DwaRcz5QvI' },
+//     { id: 2, name: 'Ravi',    game: 'Valorant',     viewers: '6.4k',  avatar: 'images/download (1).jpeg', videoUrl: 'https://www.youtube.com/embed/h7MYJghRWt0?si=zwYcpJYNrCCWbBDR' },
+//     { id: 3, name: 'Gaurika', game: 'BGMI',         viewers: '4.1k',  avatar: 'images/download.jpeg',      videoUrl: 'https://www.youtube.com/embed/f44f7N4RUTk?si=3PbvPXuiYdTkccd1' }
+//   ];
+
+//   // ---------- SELECTORS (match your HTML) ----------
+//   const mainStreamIframe = document.getElementById('main-stream-player'); // iframe id in your HTML
+//   const streamerName       = document.getElementById('streamer-name');
+//   const streamerGame       = document.getElementById('stream-title');     // note: this id in your HTML
+//   const streamerAvatar     = document.getElementById('streamer-avatar');
+//   const viewersCount       = document.getElementById('viewer-count');
+//   const sidebarList        = document.getElementById('sidebar-stream-list');
+//   const loginLink          = document.getElementById('login-link');
+//   const signoutLink        = document.getElementById('signout-link');
+//   const userInitials       = document.getElementById('user-initials');
+//   const userDropdown       = document.getElementById('user-dropdown');
+//   const dropdownMenu       = document.getElementById('dropdown-menu');
+//   const joinGameButtons    = document.querySelectorAll('.join-game-btn');
+
+//   // quick check
+//   if (!userInitials || !userDropdown || !dropdownMenu) {
+//     console.warn('[app] dropdown elements missing (ids: user-initials/user-dropdown/dropdown-menu)');
+//   }
+//   if (!mainStreamIframe) {
+//     console.warn('[app] main stream iframe missing (id: main-stream-player)');
+//   }
+
+//   let activeStreamerId = 1;
+
+//   // ---------- STREAM UI FUNCTIONS ----------
+//   function updateMainStream(streamer) {
+//     if (mainStreamIframe) mainStreamIframe.src = streamer.videoUrl;
+//     if (streamerName) streamerName.textContent = streamer.name;
+//     if (streamerGame) streamerGame.textContent = streamer.game;
+//     if (streamerAvatar) streamerAvatar.src = streamer.avatar;
+//     if (viewersCount) viewersCount.textContent = `${streamer.viewers} viewers`;
+//     activeStreamerId = streamer.id;
+//     renderSidebar();
+//   }
+
+//   function renderSidebar() {
+//     if (!sidebarList) return;
+//     sidebarList.innerHTML = '';
+//     streamers.forEach((s) => {
+//       const isActive = s.id === activeStreamerId;
+//       const li = document.createElement('li');
+//       li.className = `sidebar-item ${isActive ? 'active' : ''}`;
+//       li.innerHTML = `
+//         <img src="${s.avatar}" alt="${s.name}" class="sidebar-avatar">
+//         <div class="sidebar-info">
+//           <span class="sidebar-name">${s.name}</span>
+//           <span class="sidebar-game">${s.game}</span>
+//         </div>
+//         <span class="sidebar-status"></span>
+//       `;
+//       li.addEventListener('click', () => updateMainStream(s));
+//       sidebarList.appendChild(li);
+//     });
+//   }
+
+//   // ---------- AUTH / DROPDOWN ----------
+//   function computeInitials(name) {
+//     if (!name) return 'G';
+//     return name.split(' ').filter(Boolean).map(n => n[0]).slice(0,2).join('').toUpperCase();
+//   }
+
+//   function applyAuthUI() {
+//     const raw = localStorage.getItem('campusPlayUser');
+//     if (!userInitials) return;
+//     if (!raw) {
+//       userInitials.textContent = 'G';
+//       if (loginLink) loginLink.style.display = 'block';
+//       if (signoutLink) signoutLink.style.display = 'none';
+//       return;
+//     }
+//     try {
+//       const user = JSON.parse(raw);
+//       userInitials.textContent = computeInitials(user.name || user.username || '');
+//       if (loginLink) loginLink.style.display = 'none';
+//       if (signoutLink) signoutLink.style.display = 'block';
+//     } catch (err) {
+//       console.error('[app] invalid campusPlayUser', err);
+//       userInitials.textContent = 'G';
+//       if (loginLink) loginLink.style.display = 'block';
+//       if (signoutLink) signoutLink.style.display = 'none';
+//     }
+//   }
+
+//   // ensure single listeners only: remove previous handlers by cloning node if needed
+//   if (userInitials && userInitials.parentNode) {
+//     // replace with clean node (prevents double-binding if script reloaded)
+//     const clean = userInitials.cloneNode(true);
+//     userInitials.parentNode.replaceChild(clean, userInitials);
+//   }
+
+//   // requery elements after potential replace
+//   const initialsEl = document.getElementById('user-initials');
+
+//   // apply auth state at load
+//   applyAuthUI();
+
+//   // dropdown toggle handlers
+//   if (initialsEl && userDropdown) {
+//     initialsEl.addEventListener('click', (e) => {
+//       e.stopPropagation();
+//       applyAuthUI();                 // re-apply initials (safety)
+//       userDropdown.classList.toggle('open');
+//       initialsEl.setAttribute('aria-expanded', String(userDropdown.classList.contains('open')));
+//     });
+//     initialsEl.addEventListener('touchstart', (e) => {
+//       e.preventDefault();
+//       e.stopPropagation();
+//       applyAuthUI();
+//       userDropdown.classList.toggle('open');
+//       initialsEl.setAttribute('aria-expanded', String(userDropdown.classList.contains('open')));
+//     });
+//     initialsEl.setAttribute('tabindex', '0');
+//     initialsEl.addEventListener('keydown', (e) => {
+//       if (e.key === 'Enter' || e.key === ' ') {
+//         e.preventDefault();
+//         e.stopPropagation();
+//         applyAuthUI();
+//         userDropdown.classList.toggle('open');
+//       }
+//     });
+//   }
+
+//   // close dropdown clicking outside
+//   document.addEventListener('click', (e) => {
+//     if (userDropdown && !userDropdown.contains(e.target)) {
+//       userDropdown.classList.remove('open');
+//       if (initialsEl) initialsEl.setAttribute('aria-expanded', 'false');
+//     }
+//   });
+
+//   // close on Escape
+//   document.addEventListener('keydown', (e) => {
+//     if (e.key === 'Escape' && userDropdown) {
+//       userDropdown.classList.remove('open');
+//       if (initialsEl) initialsEl.setAttribute('aria-expanded', 'false');
+//     }
+//   });
+
+//   // close menu when any dropdown item clicked
+//   if (dropdownMenu) {
+//     dropdownMenu.addEventListener('click', () => {
+//       if (userDropdown) userDropdown.classList.remove('open');
+//       if (initialsEl) initialsEl.setAttribute('aria-expanded', 'false');
+//     });
+//   }
+
+//   // signout behavior
+//   if (signoutLink) {
+//     signoutLink.addEventListener('click', (e) => {
+//       e.preventDefault();
+//       localStorage.removeItem('campusPlayUser');
+//       localStorage.removeItem('token');
+//       applyAuthUI();
+//       if (userDropdown) userDropdown.classList.remove('open');
+//       window.location.href = 'login.html';
+//     });
+//   }
+
+//   // listen for storage changes from other tabs
+//   window.addEventListener('storage', (e) => {
+//     if (e.key === 'campusPlayUser') applyAuthUI();
+//   });
+
+//   // ---------- JOIN BUTTONS (redirect) ----------
+//   if (joinGameButtons && joinGameButtons.length) {
+//     joinGameButtons.forEach((btn) => {
+//       // If your join elements are anchors, they might already navigate - prevent double nav
+//       btn.addEventListener('click', (ev) => {
+//         ev.preventDefault();
+//         window.location.href = 'tournaments.html';
+//       });
+//     });
+//   }
+
+//   // ---------- INITIALIZE STREAM UI ----------
+//   const initial = streamers.find(s => s.id === activeStreamerId);
+//   if (initial) updateMainStream(initial);
+//   else renderSidebar();
+
+//   console.log('[app] ready');
+// }); 
+
+
+
+// js/script.js - consolidated and fixed
 document.addEventListener('DOMContentLoaded', () => {
   console.log('[app] init');
 
@@ -411,13 +610,14 @@ document.addEventListener('DOMContentLoaded', () => {
   const sidebarList        = document.getElementById('sidebar-stream-list');
   const loginLink          = document.getElementById('login-link');
   const signoutLink        = document.getElementById('signout-link');
-  const userInitials       = document.getElementById('user-initials');
+  // use a single live reference for the initials element
+  const initialsEl         = document.getElementById('user-initials');
   const userDropdown       = document.getElementById('user-dropdown');
   const dropdownMenu       = document.getElementById('dropdown-menu');
   const joinGameButtons    = document.querySelectorAll('.join-game-btn');
 
   // quick check
-  if (!userInitials || !userDropdown || !dropdownMenu) {
+  if (!initialsEl || !userDropdown || !dropdownMenu) {
     console.warn('[app] dropdown elements missing (ids: user-initials/user-dropdown/dropdown-menu)');
   }
   if (!mainStreamIframe) {
@@ -465,40 +665,30 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function applyAuthUI() {
     const raw = localStorage.getItem('campusPlayUser');
-    if (!userInitials) return;
+    if (!initialsEl) return;
     if (!raw) {
-      userInitials.textContent = 'G';
+      initialsEl.textContent = 'G';
       if (loginLink) loginLink.style.display = 'block';
       if (signoutLink) signoutLink.style.display = 'none';
       return;
     }
     try {
       const user = JSON.parse(raw);
-      userInitials.textContent = computeInitials(user.name || user.username || '');
+      initialsEl.textContent = computeInitials(user.name || user.username || '');
       if (loginLink) loginLink.style.display = 'none';
       if (signoutLink) signoutLink.style.display = 'block';
     } catch (err) {
       console.error('[app] invalid campusPlayUser', err);
-      userInitials.textContent = 'G';
+      initialsEl.textContent = 'G';
       if (loginLink) loginLink.style.display = 'block';
       if (signoutLink) signoutLink.style.display = 'none';
     }
   }
 
-  // ensure single listeners only: remove previous handlers by cloning node if needed
-  if (userInitials && userInitials.parentNode) {
-    // replace with clean node (prevents double-binding if script reloaded)
-    const clean = userInitials.cloneNode(true);
-    userInitials.parentNode.replaceChild(clean, userInitials);
-  }
-
-  // requery elements after potential replace
-  const initialsEl = document.getElementById('user-initials');
-
   // apply auth state at load
   applyAuthUI();
 
-  // dropdown toggle handlers
+  // dropdown toggle handlers (use initialsEl)
   if (initialsEl && userDropdown) {
     initialsEl.addEventListener('click', (e) => {
       e.stopPropagation();
@@ -568,7 +758,6 @@ document.addEventListener('DOMContentLoaded', () => {
   // ---------- JOIN BUTTONS (redirect) ----------
   if (joinGameButtons && joinGameButtons.length) {
     joinGameButtons.forEach((btn) => {
-      // If your join elements are anchors, they might already navigate - prevent double nav
       btn.addEventListener('click', (ev) => {
         ev.preventDefault();
         window.location.href = 'tournaments.html';
@@ -582,4 +771,4 @@ document.addEventListener('DOMContentLoaded', () => {
   else renderSidebar();
 
   console.log('[app] ready');
-}); 
+});
