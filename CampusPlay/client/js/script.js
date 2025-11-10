@@ -304,3 +304,90 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 });
+// dropdown-auth.js — paste into js/script.js or <script> at page end
+document.addEventListener('DOMContentLoaded', () => {
+  const userInitials = document.getElementById('user-initials');
+  const userDropdown = document.getElementById('user-dropdown');
+  const dropdownMenu = document.getElementById('dropdown-menu');
+  const loginLink = document.getElementById('login-link');
+  const signoutLink = document.getElementById('signout-link');
+
+  function computeInitials(name) {
+    if (!name) return 'G';
+    return name
+      .split(' ')
+      .filter(Boolean)
+      .map(n => n[0])
+      .slice(0, 2)
+      .join('')
+      .toUpperCase();
+  }
+
+  function applyAuthUI() {
+    const raw = localStorage.getItem('campusPlayUser');
+
+    // default (logged out)
+    if (!raw) {
+      if (userInitials) userInitials.textContent = 'G';
+      if (loginLink) loginLink.style.display = 'block';
+      if (signoutLink) signoutLink.style.display = 'none';
+      return;
+    }
+
+    // logged in
+    try {
+      const user = JSON.parse(raw);
+      const name = user.name || user.username || '';
+      if (userInitials) userInitials.textContent = computeInitials(name);
+      if (loginLink) loginLink.style.display = 'none';
+      if (signoutLink) signoutLink.style.display = 'block';
+    } catch (err) {
+      console.error('Invalid campusPlayUser in localStorage', err);
+      if (userInitials) userInitials.textContent = 'G';
+      if (loginLink) loginLink.style.display = 'block';
+      if (signoutLink) signoutLink.style.display = 'none';
+    }
+  }
+
+  // initial application
+  applyAuthUI();
+
+  // toggle dropdown when initials clicked
+  if (userInitials && userDropdown) {
+    userInitials.addEventListener('click', (e) => {
+      e.stopPropagation();
+      // re-apply initials in case something else wrote into the span
+      applyAuthUI();
+      userDropdown.classList.toggle('open');
+    });
+  }
+
+  // close dropdown if clicking outside
+  document.addEventListener('click', (e) => {
+    if (!userDropdown) return;
+    if (!userDropdown.contains(e.target)) userDropdown.classList.remove('open');
+  });
+
+  // close on Escape
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && userDropdown) userDropdown.classList.remove('open');
+  });
+
+  // sign out handler
+  if (signoutLink) {
+    signoutLink.addEventListener('click', (e) => {
+      e.preventDefault();
+      localStorage.removeItem('campusPlayUser');
+      localStorage.removeItem('token'); // if you store auth token
+      applyAuthUI();
+      userDropdown.classList.remove('open');
+      // optional redirect
+      window.location.href = 'login.html';
+    });
+  }
+
+  // if another tab changes login state
+  window.addEventListener('storage', (e) => {
+    if (e.key === 'campusPlayUser') applyAuthUI();
+  });
+});
