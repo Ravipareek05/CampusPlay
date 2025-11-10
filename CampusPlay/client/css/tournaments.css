@@ -1,4 +1,4 @@
-/* :root {
+:root {
     --dark-bg: #000000;
     --card-bg: #121212;
     --text-light: #ffffff;
@@ -15,7 +15,7 @@
     --spacing-lg: 48px;
 }
 
-Reset & base */
+Reset & base
 * {
     margin: 0;
     padding: 0;
