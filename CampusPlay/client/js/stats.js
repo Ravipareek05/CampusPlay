@@ -888,6 +888,302 @@
 
 
 
+// const LOCAL_CSV_URL = "csv/bgmi_sat.csv"; // <-- your CSV path
+
+// /* -------- Helper: escape HTML -------- */
+// function escapeHtml(str = "") {
+//   return String(str)
+//     .replace(/&/g, "&amp;")
+//     .replace(/</g, "&lt;")
+//     .replace(/>/g, "&gt;")
+//     .replace(/"/g, "&quot;");
+// }
+
+// /* -------- Setup user dropdown & admin visibility (fixed) -------- */
+// function setupUserDropdown() {
+//   let user = {};
+//   try {
+//     const userRaw = localStorage.getItem("campusPlayUser") || "{}";
+//     user = JSON.parse(userRaw);
+//   } catch (e) {
+//     user = {};
+//   }
+
+//   // populate name + initials if those elements exist
+//   const nameEl = document.getElementById("user-name");
+//   const initialsEl = document.getElementById("user-initials");
+//   if (user?.name) {
+//     if (nameEl) nameEl.textContent = user.name;
+//     if (initialsEl) {
+//       const initials = user.name
+//         .split(" ")
+//         .map((n) => n && n[0])
+//         .filter(Boolean)
+//         .slice(0, 2)
+//         .join("")
+//         .toUpperCase();
+//       initialsEl.textContent = initials;
+//     }
+//   } else {
+//     if (nameEl) nameEl.textContent = "";
+//     if (initialsEl) initialsEl.textContent = "G";
+//   }
+
+//   // show admin panel if role === "admin"
+//   try {
+//     if (user?.role === "admin") {
+//       const panel = document.getElementById("statsAdminPanel");
+//       if (panel) panel.style.display = "block";
+//     }
+//   } catch (e) {
+//     /* ignore */
+//   }
+
+//   // Add a simple logout button handler if an element with id logoutBtn exists inside page
+//   const logoutBtn = document.getElementById("logoutBtn");
+//   if (logoutBtn) {
+//     logoutBtn.addEventListener("click", (ev) => {
+//       ev.preventDefault();
+//       localStorage.removeItem("campusPlayUser");
+//       localStorage.removeItem("token");
+//       window.location.href = "login.html";
+//     });
+//   }
+// }
+
+// /* -------- Elements -------- */
+// const tableBody = document.getElementById("statsTableBody");
+// const sumPlayers = document.getElementById("sumPlayers");
+// const sumWinRate = document.getElementById("sumWinRate");
+// const sumKD = document.getElementById("sumKD");
+// const sumTopRating = document.getElementById("sumTopRating");
+
+// const filterGame = document.getElementById("statsFilterGame");
+// const filterCampus = document.getElementById("statsFilterCampus");
+
+// const uploadBtn = document.getElementById("statsUploadBtn");
+// const previewBtn = document.getElementById("statsParsePreviewBtn");
+// const csvFileInput = document.getElementById("statsCsvFile");
+// const previewWrap = document.getElementById("statsPreviewWrap");
+// const previewMsg = document.getElementById("statsPreviewMsg");
+
+// /* -------- Load PapaParse -------- */
+// function loadPapa() {
+//   return new Promise((resolve) => {
+//     if (window.Papa) return resolve();
+//     const s = document.createElement("script");
+//     s.src = "https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js";
+//     s.onload = resolve;
+//     document.head.appendChild(s);
+//   });
+// }
+
+// /* -------- MAIN — Load CSV and show stats -------- */
+// async function fetchStats() {
+//   try {
+//     await loadPapa();
+//     const csvText = await fetch(LOCAL_CSV_URL).then((r) => {
+//       if (!r.ok) throw new Error("CSV not found: " + r.status);
+//       return r.text();
+//     });
+//     let rows = Papa.parse(csvText, { header: true, skipEmptyLines: true }).data;
+
+//     if (!rows || !rows.length) {
+//       if (tableBody) tableBody.innerHTML = `<tr><td colspan="50">No records found</td></tr>`;
+//       return;
+//     }
+
+//     // Inject mandatory fields that were missing
+//     rows = rows.map((r) => ({
+//       ...r,
+//       game: r.game || "BGMI",
+//       campus: r.campus || "-",
+//     }));
+
+//     // Apply Game & Campus filters (if present)
+//     if (filterGame && filterGame.value) {
+//       rows = rows.filter((r) => (r.game || "").toLowerCase() === filterGame.value.toLowerCase());
+//     }
+//     if (filterCampus && filterCampus.value) {
+//       rows = rows.filter((r) => (r.campus || "").toLowerCase() === filterCampus.value.toLowerCase());
+//     }
+
+//     renderStats(rows);
+//   } catch (err) {
+//     console.error("CSV load error:", err);
+//     if (tableBody) tableBody.innerHTML = `<tr><td colspan="50">Error loading CSV file</td></tr>`;
+//   }
+// }
+
+// /* -------- Render Stats Summary + Table with ALL CSV COLUMNS -------- */
+// function renderStats(rows) {
+//   if (!rows || !rows.length) {
+//     if (tableBody) tableBody.innerHTML = `<tr><td colspan="50">No records</td></tr>`;
+//     if (sumPlayers) sumPlayers.textContent = "0";
+//     if (sumWinRate) sumWinRate.textContent = "0%";
+//     if (sumKD) sumKD.textContent = "0.00";
+//     if (sumTopRating) sumTopRating.textContent = "0";
+//     return;
+//   }
+
+//   // -------- SUMMARY CARDS --------
+//   if (sumPlayers) sumPlayers.textContent = rows.length;
+
+//   const avgWin = average(rows.map((r) => Number(r.Wins || 0)));
+//   const avgKD = average(
+//     rows.map((r) => {
+//       const k = Number(r.Kills || 0);
+//       const d = Number(r.Deaths || 0);
+//       return d === 0 ? k : k / d;
+//     })
+//   );
+//   const topRating = mostCommonRank(rows);
+
+//   if (sumWinRate) sumWinRate.textContent = avgWin.toFixed(1) + "%";
+//   if (sumKD) sumKD.textContent = avgKD.toFixed(2);
+//   if (sumTopRating) sumTopRating.textContent = topRating;
+
+//   // -------- TABLE HEADERS --------
+//   const columns = Object.keys(rows[0] || {});
+//   let headerHTML = "<tr>";
+//   columns.forEach((col) => (headerHTML += `<th>${escapeHtml(col)}</th>`));
+//   headerHTML += "</tr>";
+
+//   const thead = document.querySelector(".stats-table thead");
+//   if (thead) thead.innerHTML = headerHTML;
+
+//   // -------- TABLE BODY --------
+//   if (tableBody) {
+//     tableBody.innerHTML = rows
+//       .map((row) => {
+//         let rowHTML = "<tr>";
+//         columns.forEach((col) => {
+//           rowHTML += `<td>${escapeHtml(row[col] ?? "")}</td>`;
+//         });
+//         rowHTML += "</tr>";
+//         return rowHTML;
+//       })
+//       .join("");
+//   }
+// }
+
+// /* -------- Utility: Average -------- */
+// function average(arr) {
+//   arr = arr.map((v) => Number(v)).filter((v) => !isNaN(v));
+//   if (!arr.length) return 0;
+//   return arr.reduce((a, b) => a + b, 0) / arr.length;
+// }
+
+// /* -------- Utility: Most Common Rank -------- */
+// function mostCommonRank(rows) {
+//   const freq = {};
+//   rows.forEach((r) => {
+//     const rank = r.Rank || r.rank || "Unranked";
+//     freq[rank] = (freq[rank] || 0) + 1;
+//   });
+//   const sorted = Object.entries(freq).sort((a, b) => b[1] - a[1]);
+//   return sorted.length ? sorted[0][0] : "—";
+// }
+
+// /* -------- Filter Buttons -------- */
+// const applyBtn = document.getElementById("statsApplyBtn");
+// const resetBtn = document.getElementById("statsResetBtn");
+// if (applyBtn) applyBtn.onclick = fetchStats;
+// if (resetBtn)
+//   resetBtn.onclick = () => {
+//     if (filterGame) filterGame.value = "";
+//     if (filterCampus) filterCampus.value = "";
+//     fetchStats();
+//   };
+
+// /* -------- CSV Preview (Admin) -------- */
+// if (previewBtn) {
+//   previewBtn.onclick = async () => {
+//     const f = csvFileInput && csvFileInput.files && csvFileInput.files[0];
+//     if (!f) return (previewMsg.textContent = "No file selected");
+
+//     await loadPapa();
+//     Papa.parse(f, {
+//       header: true,
+//       skipEmptyLines: true,
+//       complete: (r) => {
+//         const rows = r.data;
+//         if (!rows.length) {
+//           previewMsg.textContent = "CSV is empty.";
+//           return;
+//         }
+
+//         previewMsg.textContent = "Preview loaded";
+//         let html = "<table><tr>";
+//         Object.keys(rows[0]).forEach((h) => (html += `<th>${escapeHtml(h)}</th>`));
+//         html += "</tr>";
+//         rows.slice(0, 10).forEach((row) => {
+//           html += "<tr>";
+//           Object.values(row).forEach((v) => (html += `<td>${escapeHtml(v)}</td>`));
+//           html += "</tr>";
+//         });
+//         html += "</table>";
+//         if (previewWrap) previewWrap.innerHTML = html;
+//         if (uploadBtn) uploadBtn.disabled = false;
+//       },
+//       error: (err) => {
+//         if (previewMsg) previewMsg.textContent = "Parse error: " + err.message;
+//         if (previewWrap) previewWrap.innerHTML = "";
+//         if (uploadBtn) uploadBtn.disabled = true;
+//       },
+//     });
+//   };
+// }
+
+// /* -------- Simulated Upload (Since you don’t use backend now) -------- */
+// if (uploadBtn) {
+//   uploadBtn.onclick = () => {
+//     if (previewMsg) previewMsg.textContent = "Since CSV loads directly, upload is not required.";
+//   };
+// }
+// // ---------- USER DROPDOWN TOGGLE (same as homepage) ----------
+// document.addEventListener("DOMContentLoaded", () => {
+//     const initialsEl = document.getElementById("user-initials");
+//     const dropdown = document.getElementById("user-dropdown");
+//     const menu = document.getElementById("dropdown-menu");
+//     const signout = document.getElementById("signout-link");
+
+//     // Open/close dropdown
+//     if (initialsEl && dropdown) {
+//         initialsEl.onclick = (e) => {
+//             e.stopPropagation();
+//             dropdown.classList.toggle("open");
+//         };
+//     }
+
+//     // Close when clicking outside
+//     document.addEventListener("click", (e) => {
+//         if (dropdown && !dropdown.contains(e.target)) {
+//             dropdown.classList.remove("open");
+//         }
+//     });
+
+//     // Logout
+//     if (signout) {
+//         signout.onclick = (e) => {
+//             e.preventDefault();
+//             localStorage.removeItem("campusPlayUser");
+//             localStorage.removeItem("token");
+//             window.location.href = "login.html";
+//         };
+//     }
+// });
+
+// /* -------- INITIAL LOAD -------- */
+// document.addEventListener("DOMContentLoaded", () => {
+//   setupUserDropdown();
+//   fetchStats();
+// });
+
+
+
+
+
 const LOCAL_CSV_URL = "csv/bgmi_sat.csv"; // <-- your CSV path
 
 /* -------- Helper: escape HTML -------- */
@@ -939,7 +1235,7 @@ function setupUserDropdown() {
     /* ignore */
   }
 
-  // Add a simple logout button handler if an element with id logoutBtn exists inside page
+  // Also add logout handler to #logoutBtn if present (safe)
   const logoutBtn = document.getElementById("logoutBtn");
   if (logoutBtn) {
     logoutBtn.addEventListener("click", (ev) => {
@@ -1142,8 +1438,46 @@ if (uploadBtn) {
   };
 }
 
-/* -------- INITIAL LOAD -------- */
+/* ---------- FINAL: single DOMContentLoaded init (dropdown + setup + fetch) ---------- */
 document.addEventListener("DOMContentLoaded", () => {
+  // populate user + admin panel
   setupUserDropdown();
+
+  // dropdown toggle + outside click + logout (uses #user-dropdown, #user-initials, #dropdown-menu, #signout-link)
+  (function initDropdown() {
+    const initialsEl = document.getElementById("user-initials");
+    const dropdown = document.getElementById("user-dropdown");
+    const menu = document.getElementById("dropdown-menu");
+    const signout = document.getElementById("signout-link");
+
+    if (initialsEl && dropdown) {
+      initialsEl.addEventListener("click", (e) => {
+        e.stopPropagation();
+        dropdown.classList.toggle("open");
+      });
+      initialsEl.addEventListener("touchstart", (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        dropdown.classList.toggle("open");
+      });
+    }
+
+    document.addEventListener("click", (ev) => {
+      if (dropdown && !dropdown.contains(ev.target)) {
+        dropdown.classList.remove("open");
+      }
+    });
+
+    if (signout) {
+      signout.addEventListener("click", (e) => {
+        e.preventDefault();
+        localStorage.removeItem("campusPlayUser");
+        localStorage.removeItem("token");
+        window.location.href = "login.html";
+      });
+    }
+  })();
+
+  // initial load of stats
   fetchStats();
 });

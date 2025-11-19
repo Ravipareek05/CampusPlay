@@ -775,7 +775,7 @@
 
 //19 nov sakshi code 
 
-document.addEventListener("DOMContentLoaded", function () {
+
   // --- Backend Data (streamers) ---
   // const streamers = [
   //   {
@@ -807,7 +807,7 @@ document.addEventListener("DOMContentLoaded", function () {
   //     videoUrl: "https://www.youtube.com/embed/f44f7N4RUTk?si=3PbvPXuiYdTkccd1",
   //   },
   // ];
-
+document.addEventListener("DOMContentLoaded", function () {
   // --- Element Selectors ---
   const mainStreamIframe = document.getElementById("main-stream-player");
   const streamerName = document.getElementById("streamer-name");
