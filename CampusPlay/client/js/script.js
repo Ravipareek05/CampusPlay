@@ -777,36 +777,36 @@
 
 document.addEventListener("DOMContentLoaded", function () {
   // --- Backend Data (streamers) ---
-  const streamers = [
-    {
-      id: 1,
-      name: "Harshit",
-      game: "Clash Royale",
-      viewers: "12.8k",
-      avatar: "images/download (2).jpeg",
-      thumbnail: "images/avatar1.jpeg",
-      videoUrl:
-        "https://www.youtube.com/embed/-DwaRcz5QvI?autoplay=1&mute=1&controls=0&loop=1&playlist=-DwaRcz5QvI",
-    },
-    {
-      id: 2,
-      name: "Ravi",
-      game: "Valorant",
-      viewers: "6.4k",
-      avatar: "images/download (1).jpeg",
-      thumbnail: "images/avatar2.jpeg",
-      videoUrl: "https://www.youtube.com/embed/h7MYJghRWt0?si=zwYcpJYNrCCWbBDR",
-    },
-    {
-      id: 3,
-      name: "Gaurika",
-      game: "BGMI",
-      viewers: "4.1k",
-      avatar: "images/download.jpeg",
-      thumbnail: "images/avatar3.jpeg",
-      videoUrl: "https://www.youtube.com/embed/f44f7N4RUTk?si=3PbvPXuiYdTkccd1",
-    },
-  ];
+  // const streamers = [
+  //   {
+  //     id: 1,
+  //     name: "Harshit",
+  //     game: "Clash Royale",
+  //     viewers: "12.8k",
+  //     avatar: "images/download (2).jpeg",
+  //     thumbnail: "images/avatar1.jpeg",
+  //     videoUrl:
+  //       "https://www.youtube.com/embed/-DwaRcz5QvI?autoplay=1&mute=1&controls=0&loop=1&playlist=-DwaRcz5QvI",
+  //   },
+  //   {
+  //     id: 2,
+  //     name: "Ravi",
+  //     game: "Valorant",
+  //     viewers: "6.4k",
+  //     avatar: "images/download (1).jpeg",
+  //     thumbnail: "images/avatar2.jpeg",
+  //     videoUrl: "https://www.youtube.com/embed/h7MYJghRWt0?si=zwYcpJYNrCCWbBDR",
+  //   },
+  //   {
+  //     id: 3,
+  //     name: "Gaurika",
+  //     game: "BGMI",
+  //     viewers: "4.1k",
+  //     avatar: "images/download.jpeg",
+  //     thumbnail: "images/avatar3.jpeg",
+  //     videoUrl: "https://www.youtube.com/embed/f44f7N4RUTk?si=3PbvPXuiYdTkccd1",
+  //   },
+  // ];
 
   // --- Element Selectors ---
   const mainStreamIframe = document.getElementById("main-stream-player");
