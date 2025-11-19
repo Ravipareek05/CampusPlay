@@ -50,12 +50,35 @@
             <i class="fas fa-chevron-right"></i>
             <span>Stats</span>
           </div>
-          <div class="header-actions">
+          <!-- <div class="header-actions">
             <div class="user-profile">
               <span id="user-initials"></span>
               <span id="user-name"></span>
             </div>
-          </div>
+          </div> -->
+
+          <div class="header-actions">
+
+  <div class="user-actions">
+
+    <span class="notification-icon"><i class="fas fa-bell"></i></span>
+
+    <div class="user-dropdown" id="user-dropdown">
+
+      <span class="user-initials" id="user-initials">G</span>
+      <span id="user-name" class="user-name"></span>
+
+      <div class="dropdown-menu" id="dropdown-menu">
+        <a href="login.html" class="dropdown-item" id="login-link">Profile</a>
+        <a href="login.html" class="dropdown-item" id="signout-link">Sign Out</a>
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
         </header>
 
         <div class="content-body">
@@ -214,6 +237,9 @@
         </div>
       </main>
     </div>
+    <span id="user-initials"></span>
+<span id="user-name"></span>
+
 
     <div class="toast-container" id="toast-container"></div>
 
