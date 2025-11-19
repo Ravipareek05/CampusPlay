@@ -657,6 +657,15 @@ function escapeHtml(str = "") {
     .replace(/"/g, "&quot;");
 }
 
+function setupUserDropdown() {
+  const userRaw = localStorage.getItem("campusPlayUser") || "{}";
+  let user = {};
+  try {
+    user = JSON.parse(userRaw);
+  } catch (e) {
+    user = {};
+  }}
+
 /* -------- Elements -------- */
 const tableBody = document.getElementById("statsTableBody");
 const sumPlayers = document.getElementById("sumPlayers");
@@ -835,4 +844,10 @@ uploadBtn.onclick = () => {
 };
 
 /* -------- INITIAL LOAD -------- */
-document.addEventListener("DOMContentLoaded", fetchStats);
+// document.addEventListener("DOMContentLoaded", fetchStats);
+
+
+document.addEventListener("DOMContentLoaded", () => {
+  setupUserDropdown();
+  fetchStats();
+});
