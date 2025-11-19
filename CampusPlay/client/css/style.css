@@ -348,13 +348,17 @@ img {
 
 .btn-watch {
   width: 100%;
-  background-color: var(--accent-blue);
+  background-color: var(--accent-red);
   color: var(--text-light);
   padding: 12px 24px;
   border: none;
   border-radius: 5px;
   font-weight: 600;
   cursor: pointer;
+}
+.btn-watch:hover {
+    background: var(--border-color);
+    color: #ff4757;
 }
 
 /* ==========================================================================
@@ -1407,4 +1411,190 @@ img {
   padding: 8px 14px;
   color: #fff;
   text-decoration: none;
+}
+
+/* ==========================================================================
+   Streamer Info - Full Width Card Layout
+   ========================================================================== */
+
+.stream-info-extended {
+  width: 100%;                /* Forces full width */
+  background-color: #151515;  /* Dark card background */
+  border: 1px solid #2a2a2a;  /* Subtle border */
+  border-radius: 12px;        /* Rounded corners */
+  padding: 20px;              /* Space inside the card */
+  margin-top: 15px;           /* Space between video and card */
+  box-sizing: border-box;     /* Ensures padding doesn't break width */
+  color: var(--text-light);
+  display: block;
+}
+
+/* --- Header Row (Avatar + Sub Button) --- */
+.streamer-header-row {
+  display: flex;
+  justify-content: space-between; /* Pushes items to far left and right */
+  align-items: center;
+  width: 100%;
+  margin-bottom: 20px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid #2a2a2a; /* Divider line inside the card */
+}
+
+.streamer-identity {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.avatar-wrapper {
+  position: relative;
+  flex-shrink: 0;
+}
+
+.streamer-avatar-lg {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid var(--dark-bg);
+}
+
+/* Red pulsing ring effect */
+.live-status-ring {
+  position: absolute;
+  top: -3px; left: -3px; right: -3px; bottom: -3px;
+  border-radius: 50%;
+  border: 2px solid var(--accent-red);
+  animation: pulse-red 2s infinite;
+  z-index: 1;
+  pointer-events: none;
+}
+
+@keyframes pulse-red {
+  0% { transform: scale(1); opacity: 1; }
+  100% { transform: scale(1.2); opacity: 0; }
+}
+
+.streamer-name-lg {
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.verified-icon {
+  color: #3498db;
+  font-size: 0.8em;
+}
+
+.sub-count {
+  color: var(--text-medium);
+  font-size: 0.85rem;
+  margin-top: 2px;
+}
+
+.btn-subscribe-lg {
+  background-color: var(--accent-red);
+  color: white;
+  border: none;
+  border-radius: 24px;
+  padding: 10px 28px;
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 0.9rem;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+/* --- Details Row (Title + Tags) --- */
+.stream-content-details {
+  width: 100%;
+}
+
+.stream-title-main {
+  font-size: 1.4rem;
+  font-weight: 600;
+  margin-bottom: 15px;
+  line-height: 1.4;
+}
+
+.stream-meta-row {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+}
+
+.game-link {
+  color: #3498db; /* Accent Blue */
+  font-weight: 600;
+  font-size: 1rem;
+  text-decoration: none;
+}
+
+.stream-tags {
+  display: flex;
+  gap: 10px;
+}
+
+.tag {
+  background-color: #252525;
+  color: var(--text-medium);
+  padding: 4px 12px;
+  border-radius: 15px;
+  font-size: 0.8rem;
+  font-weight: 500;
+}
+
+/* --- Stats Row (Viewers + Share) --- */
+.stream-realtime-stats {
+  display: flex;
+  gap: 25px;
+  color: var(--text-medium);
+  font-size: 0.95rem;
+  align-items: center;
+  width: 100%;
+}
+
+.stat-pill {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.highlight-text {
+  color: var(--accent-red);
+  font-weight: 700;
+}
+
+.share-btn {
+  margin-left: auto; /* Pushes share button to the far right */
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.share-btn:hover {
+  color: var(--text-light);
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 600px) {
+  .streamer-header-row {
+    flex-wrap: wrap;
+    gap: 15px;
+  }
+  .btn-subscribe-lg {
+    width: 100%;
+    margin-top: 10px;
+  }
+  .stream-realtime-stats {
+    flex-wrap: wrap;
+    gap: 15px;
+  }
+  .share-btn {
+    margin-left: 0;
+  }
 }
