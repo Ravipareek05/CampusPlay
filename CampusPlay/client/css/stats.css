@@ -141,7 +141,7 @@ body {
     align-items: center;
     gap: var(--spacing-md);
 }
-
+/* 
 .user-profile {
     display: flex;
     align-items: center;
@@ -162,6 +162,63 @@ body {
     justify-content: center;
     font-weight: 700;
     font-size: 0.9em;
+} */
+
+
+.user-actions {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  gap: 20px;
+}
+
+.notification-icon {
+  font-size: 1.2em;
+  cursor: pointer;
+}
+.user-dropdown {
+  position: relative;
+  display: inline-block;
+}
+.user-initials {
+  background: #ff4757;
+  color: #fff;
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 1em;
+  cursor: pointer;
+  margin-left: 10px;
+}
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  right: 0;
+  top: 110%;
+  background: #121212;
+  border-radius: 8px;
+  min-width: 120px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.12);
+  z-index: 100;
+  padding: 8px 0;
+}
+.dropdown-item {
+  color: #fff;
+  padding: 10px 20px;
+  display: block;
+  text-decoration: none;
+  font-size: 1em;
+  transition: background 0.2s;
+}
+.dropdown-item:hover {
+  background: #ff475621;
+}
+.user-dropdown.open .dropdown-menu {
+  display: block;
 }
 
 #user-name {
