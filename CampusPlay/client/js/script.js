@@ -177,27 +177,38 @@ document.addEventListener("DOMContentLoaded", function () {
     },
   ];
 
-  // --- Element Selectors (match your HTML ids/classes) ---
-  const mainStreamIframe = document.getElementById("main-stream-player"); // fixed
-  const streamerName = document.getElementById("streamer-name"); // exists in HTML
-  const streamerGame = document.getElementById("stream-title"); // fixed -> stream-title
-  const streamerAvatar = document.getElementById("streamer-avatar"); // exists
-  const viewersCount = document.getElementById("viewer-count"); // fixed -> viewer-count
-  const sidebarList = document.getElementById("sidebar-stream-list"); // fixed
+  // --- Element Selectors ---
+  const mainStreamIframe = document.getElementById("main-stream-player");
+  const streamerName = document.getElementById("streamer-name");
+  const streamerGame = document.getElementById("stream-title");
+  const streamerAvatar = document.getElementById("streamer-avatar");
+  const viewersCount = document.getElementById("viewer-count");
+  const sidebarList = document.getElementById("sidebar-stream-list");
+
   const loginLink = document.getElementById("login-link");
   const signoutLink = document.getElementById("signout-link");
   const userInitials = document.getElementById("user-initials");
   const userDropdown = document.getElementById("user-dropdown");
   const joinGameButtons = document.querySelectorAll(".join-game-btn");
+
+  // NEW: Start Playing button
+  const startPlayingBtn = document.getElementById("startPlayingBtn");
+
   let activeStreamerId = 1;
 
-  // --- Safeguard: if critical elements missing, bail early with console warning
-  if (!mainStreamIframe || !streamerName || !streamerGame || !streamerAvatar || !viewersCount || !sidebarList) {
+  // --- Safeguard: check required elements ---
+  if (
+    !mainStreamIframe ||
+    !streamerName ||
+    !streamerGame ||
+    !streamerAvatar ||
+    !viewersCount ||
+    !sidebarList
+  ) {
     console.warn("Stream elements missing - check IDs in HTML vs JS");
   }
 
   // --- Functions ---
-
   function updateMainStream(streamer) {
     if (mainStreamIframe) mainStreamIframe.src = streamer.videoUrl;
     if (streamerName) streamerName.textContent = streamer.name;
@@ -216,13 +227,13 @@ document.addEventListener("DOMContentLoaded", function () {
       const item = document.createElement("li");
       item.className = `sidebar-item ${isActive ? "active" : ""}`;
       item.innerHTML = `
-                <img src="${streamer.avatar}" alt="${streamer.name}" class="sidebar-avatar">
-                <div class="sidebar-info">
-                    <span class="sidebar-name">${streamer.name}</span>
-                    <span class="sidebar-game">${streamer.game}</span>
-                </div>
-                <span class="sidebar-status"></span>
-            `;
+        <img src="${streamer.avatar}" alt="${streamer.name}" class="sidebar-avatar">
+        <div class="sidebar-info">
+            <span class="sidebar-name">${streamer.name}</span>
+            <span class="sidebar-game">${streamer.game}</span>
+        </div>
+        <span class="sidebar-status"></span>
+      `;
       item.addEventListener("click", () => updateMainStream(streamer));
       sidebarList.appendChild(item);
     });
@@ -255,7 +266,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   }
 
-  // --- Initialize page content ---
+  // --- Initialize content ---
   const initialStreamer = streamers.find((s) => s.id === activeStreamerId);
   if (initialStreamer) updateMainStream(initialStreamer);
   renderSidebar();
@@ -276,7 +287,7 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
-  // Hide dropdown clicking outside
+  // Hide dropdown when clicking outside
   document.addEventListener("click", function (ev) {
     if (userDropdown && !userDropdown.contains(ev.target)) {
       userDropdown.classList.remove("open");
@@ -293,14 +304,29 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
-  // Join Game buttons redirect
+  // Join Game buttons redirect to tournaments
   if (joinGameButtons && joinGameButtons.length) {
     joinGameButtons.forEach((button) => {
       button.addEventListener("click", (ev) => {
-        // If anchors, prevent default then navigate
         ev.preventDefault();
         window.location.href = "tournaments.html";
       });
+    });
+  }
+
+  // ✅ NEW: Start Playing button behavior
+  if (startPlayingBtn) {
+    startPlayingBtn.addEventListener("click", function (event) {
+      event.preventDefault();
+      const user = localStorage.getItem("campusPlayUser");
+
+      if (user) {
+        // User logged in → Go to tournaments page
+        window.location.href = "tournaments.html";
+      } else {
+        // Not logged in → Go to login page
+        window.location.href = "login.html";
+      }
     });
   }
 });
