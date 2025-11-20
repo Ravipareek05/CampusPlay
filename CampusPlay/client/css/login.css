@@ -1246,7 +1246,7 @@ body {
   transform: translateY(-10px);
   box-shadow: var(--gaming-shadow);
 }
-
+/* 
 .game-image {
   height: 200px;
   background: linear-gradient(45deg, var(--gaming-red), var(--gaming-pink));
@@ -1258,8 +1258,35 @@ body {
   position: absolute;
   inset: 0;
   background: rgba(0, 0, 0, 0.3);
+} */
+
+
+
+.game-image {
+  height: 200px;
+  background: linear-gradient(45deg, var(--gaming-red), var(--gaming-pink));
+  position: relative;
+  overflow: hidden; /* ADD THIS */
+  border-top-left-radius: 12px; /* Optional: if your card has rounded corners */
+  border-top-right-radius: 12px;
 }
 
+.game-image img {
+  width: 100%;      /* ADD */
+  height: 100%;     /* ADD */
+  object-fit: cover; /* ADD → crops perfectly */
+  display: block;   /* prevents white gaps */
+  position: relative;
+  z-index: 2;       /* ensures it stays above ::before */
+}
+
+.game-image::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.3);
+  z-index: 1; /* make sure overlay stays under img */
+}
 .game-info {
   padding: var(--space-20);
 }

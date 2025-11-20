@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Stats - CampusPlay</title>
+    <link rel="stylesheet" href="css/stats.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="page-wrapper">
+      <aside class="sidebar">
+        <div class="sidebar__logo">
+          <i class="fas fa-gamepad"></i>
+          <span>CampusPlay</span>
+        </div>
+        <nav class="sidebar__nav">
+          <a href="index.html" class="nav-item"
+            ><i class="fas fa-home"></i> Dashboard</a
+          >
+          <a href="tournaments.html" class="nav-item"
+            ><i class="fas fa-trophy"></i> Tournaments</a
+          >
+          <a href="stats.html" class="nav-item active"
+            ><i class="fas fa-chart-area"></i> Stats</a
+          >
+          <a href="#" class="nav-item"><i class="fas fa-store"></i> Shop</a>
+          <a href="#" class="nav-item"
+            ><i class="fas fa-chart-bar"></i> Leaderboards</a
+          >
+        </nav>
+        <div class="sidebar__footer">
+          <a href="login.html" class="logout-button">Logout</a>
+        </div>
+      </aside>
+
+      <main class="main-content">
+        <header class="main-header">
+          <div class="breadcrumbs">
+            <span><a href="index.html">Games</a></span>
+            <i class="fas fa-chevron-right"></i>
+            <span>Stats</span>
+          </div>
+          <!-- <div class="header-actions">
+            <div class="user-profile">
+              <span id="user-initials"></span>
+              <span id="user-name"></span>
+            </div>
+          </div> -->
+
+          <div class="header-actions">
+
+  <div class="user-actions">
+
+    <span class="notification-icon"><i class="fas fa-bell"></i></span>
+
+    <div class="user-dropdown" id="user-dropdown">
+
+      <span class="user-initials" id="user-initials">G</span>
+      <span id="user-name" class="user-name"></span>
+
+      <div class="dropdown-menu" id="dropdown-menu">
+        <!-- <a href="login.html" class="dropdown-item" id="login-link">Profile</a> -->
+        <a href="login.html" class="dropdown-item" id="signout-link">Sign Out</a>
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+        </header>
+
+        <div class="content-body">
+          <section class="stats-section">
+            <div class="stats-header">
+              <h2><i class="fas fa-chart-line"></i> Tournament Statistics</h2>
+            </div>
+
+            <div class="stats-filters">
+              <select id="statsFilterGame">
+                <option value="">All Games</option>
+                <option value="Valorant">Valorant</option>
+                <option value="BGMI">BGMI</option>
+                <option value="Clash Royale">Clash Royale</option>
+                <!-- <option value="Dota 2">Dota 2</option>
+                <option value="Fortnite">Fortnite</option> -->
+              </select>
+              <select id="statsFilterCampus">
+                <option value="">All Campuses</option>
+                <option value="Patiala">Patiala</option>
+                <option value="Derabassi">Derabassi</option>
+                <!-- <option value="East Campus">East Campus</option>
+                <option value="West Campus">West Campus</option> -->
+              </select>
+              <button id="statsApplyBtn">Apply Filters</button>
+              <button id="statsResetBtn" class="secondary">Reset</button>
+            </div>
+
+            <div class="stats-summary">
+              <div class="summary-card">
+                <div class="summary-value" id="sumPlayers">0</div>
+                <div class="summary-label">Total Players</div>
+              </div>
+              <div class="summary-card">
+                <div class="summary-value" id="sumWinRate">0%</div>
+                <div class="summary-label">Avg Win Rate</div>
+              </div>
+              <div class="summary-card">
+                <div class="summary-value" id="sumKD">0.00</div>
+                <div class="summary-label">Avg K/D Ratio</div>
+              </div>
+              <div class="summary-card">
+                <div class="summary-value" id="sumTopRating">0</div>
+                <div class="summary-label">Top Rating</div>
+              </div>
+            </div>
+
+            <div class="stats-table-wrapper">
+              <table class="stats-table">
+                <thead>
+                  <tr>
+                    <th>Player</th>
+                    <th>Campus</th>
+                    <th>Game</th>
+                    <th class="center">Matches</th>
+                    <th class="center">Wins</th>
+                    <th class="center">Win %</th>
+                    <th class="center">K/D</th>
+                    <th class="center">Rating</th>
+                  </tr>
+                </thead>
+                <tbody id="statsTableBody">
+                  <tr>
+                    <td colspan="8" class="small-muted">Loading...</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <div
+              class="stats-admin-panel"
+              id="statsAdminPanel"
+              style="display: none"
+            >
+              <h3><i class="fas fa-user-shield"></i> Admin Panel</h3>
+
+              <div class="admin-section">
+                <h4>CSV Upload</h4>
+                <div class="csv-upload-area">
+                  <input type="file" id="statsCsvFile" accept=".csv" />
+                  <button id="statsParsePreviewBtn">Preview CSV</button>
+                  <button id="statsUploadBtn" disabled>
+                    Upload to Database
+                  </button>
+                  <div class="admin-message" id="statsPreviewMsg"></div>
+                  <div class="csv-preview" id="statsPreviewWrap"></div>
+                </div>
+              </div>
+
+              <div class="admin-section">
+                <h4>Manual Entry</h4>
+                <form id="statsManualForm" class="manual-entry-form">
+                  <input
+                    type="text"
+                    name="playerId"
+                    placeholder="Player ID"
+                    required
+                  />
+                  <input
+                    type="text"
+                    name="playerName"
+                    placeholder="Player Name"
+                    required
+                  />
+                  <input type="text" name="campus" placeholder="Campus" />
+                  <input type="text" name="game" placeholder="Game" required />
+                  <input
+                    type="number"
+                    name="matchesPlayed"
+                    placeholder="Matches Played"
+                    min="0"
+                  />
+                  <input type="number" name="wins" placeholder="Wins" min="0" />
+                  <input
+                    type="number"
+                    name="losses"
+                    placeholder="Losses"
+                    min="0"
+                  />
+                  <input
+                    type="number"
+                    name="kills"
+                    placeholder="Kills"
+                    min="0"
+                  />
+                  <input
+                    type="number"
+                    name="deaths"
+                    placeholder="Deaths"
+                    min="0"
+                  />
+                  <input
+                    type="number"
+                    name="assists"
+                    placeholder="Assists"
+                    min="0"
+                  />
+                  <input
+                    type="number"
+                    name="avgRank"
+                    placeholder="Avg Rank"
+                    min="0"
+                  />
+                  <input
+                    type="number"
+                    name="rating"
+                    placeholder="Rating"
+                    min="0"
+                  />
+                  <button type="submit">Save Stats</button>
+                </form>
+                <div class="admin-message" id="statsAdminMsg"></div>
+              </div>
+            </div>
+          </section>
+        </div>
+      </main>
+    </div>
+    <span id="user-initials"></span>
+<span id="user-name"></span>
+
+
+    <div class="toast-container" id="toast-container"></div>
+
+    <script src="js/stats.js"></script>
+  </body>
+</html>
