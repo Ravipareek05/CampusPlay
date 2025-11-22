@@ -1,229 +1,206 @@
-<!-- <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tournaments - CampusPlay</title>
-    <link rel="stylesheet" href="css/tournaments.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-</head>
-<body>
-    <div class="page-wrapper">
-        <aside class="sidebar">
-            <div class="sidebar__logo">
-                <i class="fas fa-gamepad"></i>
-                <span>CampusPlay</span>
-            </div>
-            <nav class="sidebar__nav">
-                <a href="index.html" class="nav-item"><i class="fas fa-home"></i> Dashboard</a>
-                <a href="tournaments.html" class="nav-item active"><i class="fas fa-trophy"></i> Tournaments</a>
-                <a href="#" class="nav-item"><i class="fas fa-store"></i> Shop</a>
-                <a href="#" class="nav-item"><i class="fas fa-chart-bar"></i> Leaderboards</a>
-            </nav>
-            <div class="sidebar__footer">
-                <a href="login.html" class="logout-button">Logout</a>
-            </div>
-        </aside>
-
-        <main class="main-content">
-            <header class="main-header">
-                <div class="breadcrumbs">
-                    <span><a href="index.html">Games</a></span>
-                    <i class="fas fa-chevron-right"></i>
-                    <span id="game-breadcrumb"></span>
-                </div>
-                <div class="header-actions">
-                    <div class="search-bar">
-                        <i class="fas fa-search"></i>
-                        <input type="text" placeholder="Search for tournaments...">
-                    </div>
-                    <div class="user-profile">
-                        <span id="user-initials"></span>
-                        <span id="user-name"></span>
-                    </div>
-                </div>
-            </header>
-
-            <div class="content-body">
-                <section class="game-banner" id="game-banner">
-                    <div class="banner-content">
-                        <h1 id="game-title"></h1>
-                        <h2>Compete in <span id="game-subtitle"></span></h2>
-                        <div class="banner-stats">
-                            <div class="stat">
-                                <span class="stat-value" id="matches-played">3200</span>
-                                <span class="stat-label">Matches played</span>
-                            </div>
-                            <div class="stat">
-                                <span class="stat-value" id="tournaments-held">235</span>
-                                <span class="stat-label">Tournaments held</span>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-
-                <section class="tournaments-list">
-                    <h3><i class="fas fa-star"></i> Featured Tournaments</h3>
-                    <div class="tournaments-grid" id="featured-tournaments-grid">
-                        </div>
-                </section>
-                
-                <section class="tournaments-list">
-                    <h3><i class="far fa-calendar-alt"></i> Upcoming</h3>
-                     <div class="tournaments-grid" id="upcoming-tournaments-grid">
-                        </div>
-                </section>
-            </div>
-        </main>
-    </div>
-
-    <div class="toast-container" id="toast-container"></div>
-
-    <script src="js/tournaments.js"></script>
-</body>
-</html> -->
-
-
-
-
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Tournaments - CampusPlay</title>
-    <link rel="stylesheet" href="css/tournaments.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>CampusPlay — Tournaments</title>
+
+    <!-- Keep the same font & icons -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap"
-      rel="stylesheet"
-    />
-    <link
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
-      rel="stylesheet"
-    />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
+
+    <!-- Your improved CSS (keep path) -->
+    <link rel="stylesheet" href="css/tournaments.css" />
   </head>
   <body>
     <div class="page-wrapper">
-      <aside class="sidebar">
-        <div class="sidebar__logo">
-          <i class="fas fa-gamepad"></i>
+      <!-- SIDEBAR -->
+      <aside class="sidebar" aria-label="Primary navigation">
+        <div class="sidebar__logo" role="img" aria-label="CampusPlay logo">
+          <i class="fas fa-gamepad" aria-hidden="true"></i>
           <span>CampusPlay</span>
         </div>
-        <!-- <nav class="sidebar__nav">
-          <a href="index.html" class="nav-item"
-            ><i class="fas fa-home"></i> Dashboard</a
-          >
-          <a href="tournaments.html" class="nav-item active"
-            ><i class="fas fa-trophy"></i> Tournaments</a
-          >
+
+        <nav class="sidebar__nav" aria-label="Main menu">
+          <a href="index.html" class="nav-item"><i class="fas fa-home"></i> Dashboard</a>
+          <a href="tournaments.html" class="nav-item active"><i class="fas fa-trophy"></i> Tournaments</a>
+          <a href="stats.html" class="nav-item"><i class="fas fa-chart-area"></i> Stats</a>
           <a href="#" class="nav-item"><i class="fas fa-store"></i> Shop</a>
-          <a href="#" class="nav-item"
-            ><i class="fas fa-chart-bar"></i> Leaderboards</a
-          >
-        </nav> -->
-        <nav class="sidebar__nav">
-  <a href="index.html" class="nav-item"><i class="fas fa-home"></i> Dashboard</a>
-  <a href="tournaments.html" class="nav-item"><i class="fas fa-trophy"></i> Tournaments</a>
-  <a href="stats.html" class="nav-item"><i class="fas fa-chart-area"></i> Stats</a>
-  <a href="#" class="nav-item"><i class="fas fa-store"></i> Shop</a>
-  <a href="#" class="nav-item"><i class="fas fa-chart-bar"></i> Leaderboards</a>
-</nav>
+          <a href="#" class="nav-item"><i class="fas fa-chart-bar"></i> Leaderboards</a>
+        </nav>
 
         <div class="sidebar__footer">
           <a href="login.html" class="logout-button">Logout</a>
         </div>
       </aside>
 
-      <main class="main-content">
-        <header class="main-header">
-          <div
-            id="admin-actions"
-            style="display: none; text-align: right; margin: 20px"
-          >
-            <button id="createTournamentBtn" class="create-tournament-btn">
-              ➕ Create Tournament
-            </button>
+      <!-- MAIN -->
+      <main class="main-content" role="main">
+        <!-- Top header with breadcrumbs, search, user -->
+        <header class="main-header" role="banner">
+          <div>
+            <div class="breadcrumbs" aria-label="Breadcrumb">
+              <span><a href="index.html">Games</a></span>
+              <i class="fas fa-chevron-right" aria-hidden="true"></i>
+              <span id="game-breadcrumb">Tournaments</span>
+            </div>
+
+            <!-- compact subtitle -->
+            <div style="color:var(--text-medium); margin-top:6px; font-weight:700;">
+              Compete • Win • Climb the leaderboards
+            </div>
           </div>
-          <div id="createTournamentModal" class="modal" style="display: none">
-            <div class="modal-content">
-              <h2>Create New Tournament</h2>
-              <input
-                type="text"
-                id="tournamentName"
-                placeholder="Tournament Name"
-                required
-              />
-              <input
-                type="text"
-                id="tournamentDate"
-                placeholder="Date (e.g. 2025-11-20)"
-                required
-              />
-              <textarea
-                id="tournamentDescription"
-                placeholder="Description"
-              ></textarea>
-              <div class="modal-actions">
-                <button id="submitTournament">Create</button>
-                <button id="closeModal">Cancel</button>
+
+          <div class="header-actions" role="region" aria-label="Header controls">
+            <div class="search-bar" role="search" aria-label="Search tournaments">
+              <i class="fas fa-search" aria-hidden="true"></i>
+              <input type="text" id="search-input" placeholder="Search tournaments, games, prizes..." />
+            </div>
+
+            <!-- quick filters & sort -->
+            <div style="display:flex; gap:10px; align-items:center;">
+              <div class="badge" title="Featured filter" id="filter-featured" style="cursor:pointer;">
+                <i class="fas fa-star"></i> Featured
               </div>
+
+              <select id="sort-select" title="Sort tournaments" style="padding:8px 10px; border-radius:8px; background:transparent; border:1px solid rgba(255,255,255,0.03); color:var(--text-light); font-weight:700;">
+                <option value="upcoming">Sort: Upcoming</option>
+                <option value="popular">Most popular</option>
+                <option value="prize">Highest Prize</option>
+              </select>
             </div>
-          </div>
-          <div class="breadcrumbs">
-            <span><a href="index.html">Games</a></span>
-            <i class="fas fa-chevron-right"></i>
-            <span id="game-breadcrumb"></span>
-          </div>
-          <div class="header-actions">
-            <div class="search-bar">
-              <i class="fas fa-search"></i>
-              <input type="text" placeholder="Search for tournaments..." />
-            </div>
-            <div class="user-profile">
-              <span id="user-initials"></span>
-              <span id="user-name"></span>
+
+            <div class="user-profile" aria-hidden="false" title="Your profile">
+              <span id="user-initials" aria-hidden="true">U</span>
+              <span id="user-name" style="font-weight:800; color:var(--text-light)">Guest</span>
             </div>
           </div>
         </header>
 
-        <div class="content-body">
-          <section class="game-banner" id="game-banner">
-            <div class="banner-content">
-              <h1 id="game-title"></h1>
-              <h2>Compete in <span id="game-subtitle"></span></h2>
-              <div class="banner-stats">
-                <div class="stat">
-                  <span class="stat-value" id="matches-played">3200</span>
-                  <span class="stat-label">Matches played</span>
-                </div>
-                <div class="stat">
-                  <span class="stat-value" id="tournaments-held">235</span>
-                  <span class="stat-label">Tournaments held</span>
-                </div>
+        <!-- HERO / BANNER -->
+        <section class="game-banner" id="game-banner" aria-label="Tournament hero">
+          <div class="banner-left">
+            <h1 id="game-title">Tournaments</h1>
+            <div style="display:flex; align-items:center; gap:12px;">
+              <h2 style="margin:0; font-size:18px;">Compete in <span id="game-subtitle">Your Favourite Games</span></h2>
+            </div>
+
+            <div class="banner-stats" aria-hidden="true">
+              <div class="stat">
+                <span class="stat-value" id="matches-played">3200</span>
+                <span class="stat-label">Matches played</span>
               </div>
+              <div class="stat">
+                <span class="stat-value" id="tournaments-held">235</span>
+                <span class="stat-label">Tournaments held</span>
+              </div>
+              <div class="stat" style="min-width:120px">
+                <span class="stat-value" id="players-online">1.2k</span>
+                <span class="stat-label">Players online</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- CTA & admin actions -->
+          <div style="margin-left:auto; display:flex; flex-direction:column; align-items:flex-end; gap:12px;">
+            <div id="admin-actions" style="display:none;">
+              <button id="createTournamentBtn" class="join-button" style="padding:10px 14px; border-radius:10px; font-weight:900;">
+                <i class="fas fa-plus" aria-hidden="true"></i> Create Tournament
+              </button>
+            </div>
+
+            <div style="color:var(--text-medium); font-weight:700; font-size:13px; text-align:right;">
+              Upcoming events • Join the action
+            </div>
+          </div>
+        </section>
+
+        <!-- CONTENT BODY: featured + upcoming -->
+        <div class="content-body" style="margin-top:18px;">
+          <!-- Featured -->
+          <section class="tournaments-list" aria-labelledby="featured-heading">
+            <h3 id="featured-heading"><i class="fas fa-star" aria-hidden="true"></i> Featured Tournaments</h3>
+            <div class="tournaments-grid" id="featured-tournaments-grid" aria-live="polite">
+              <!-- cards injected by JS -->
             </div>
           </section>
 
-          <section class="tournaments-list">
-            <h3><i class="fas fa-star"></i> Featured Tournaments</h3>
-            <div class="tournaments-grid" id="featured-tournaments-grid"></div>
-          </section>
+          <!-- Upcoming -->
+          <section class="tournaments-list" aria-labelledby="upcoming-heading">
+            <h3 id="upcoming-heading"><i class="far fa-calendar-alt" aria-hidden="true"></i> Upcoming</h3>
 
-          <section class="tournaments-list">
-            <h3><i class="far fa-calendar-alt"></i> Upcoming</h3>
-            <div class="tournaments-grid" id="upcoming-tournaments-grid"></div>
+            <!-- small controls (mobile friendly) -->
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
+              <div style="color:var(--text-medium); font-weight:700;">Showing upcoming tournaments</div>
+              <div style="display:flex; gap:8px;">
+                <div class="badge" id="filter-free" style="cursor:pointer;">Free</div>
+                <div class="badge" id="filter-paid" style="cursor:pointer;">Paid</div>
+              </div>
+            </div>
+
+            <div class="tournaments-grid" id="upcoming-tournaments-grid" aria-live="polite">
+              <!-- cards injected by JS -->
+            </div>
           </section>
         </div>
       </main>
     </div>
 
-    <div class="toast-container" id="toast-container"></div>
+    <!-- Modal: Create Tournament (hidden by default) -->
+    <div id="createTournamentModal" class="modal" style="display:none;" role="dialog" aria-modal="true" aria-labelledby="create-title">
+      <div class="modal-content">
+        <h2 id="create-title">Create New Tournament</h2>
+        <input type="text" id="tournamentName" placeholder="Tournament name" required />
+        <input type="text" id="tournamentDate" placeholder="Date (e.g. 2025-11-20)" required />
+        <input type="text" id="tournamentPrize" placeholder="Prize (optional)" />
+        <textarea id="tournamentDescription" placeholder="Short description"></textarea>
+        <div class="modal-actions" style="margin-top:8px;">
+          <button id="submitTournament" class="join-button">Create</button>
+          <button id="closeModal" class="logout-button" style="padding:8px 12px;">Cancel</button>
+        </div>
+      </div>
+    </div>
 
+    <!-- Toast container (JS also creates if missing) -->
+    <div id="toast-container" class="toast-container" aria-live="polite" aria-atomic="true"></div>
+
+    <!-- Keep your js reference -->
     <script src="js/tournaments.js"></script>
+
+    <!-- Small inline script to wire up modal (keeps behavior same as before) -->
+    <script>
+      (function () {
+        const createBtn = document.getElementById('createTournamentBtn');
+        const modal = document.getElementById('createTournamentModal');
+        const closeBtn = document.getElementById('closeModal');
+        const submitBtn = document.getElementById('submitTournament');
+
+        if (createBtn && modal) {
+          createBtn.addEventListener('click', () => { modal.style.display = 'flex'; });
+        }
+        if (closeBtn) {
+          closeBtn.addEventListener('click', () => { modal.style.display = 'none'; });
+        }
+        // simple submit handler (will be replaced by your existing JS if you already handle submission)
+        if (submitBtn) {
+          submitBtn.addEventListener('click', () => {
+            const name = document.getElementById('tournamentName').value.trim();
+            if (!name) {
+              alert('Please enter tournament name');
+              return;
+            }
+            // Basic local UX: close modal and show a toast (your backend JS will create real tournament)
+            modal.style.display = 'none';
+            const fakeToast = document.createElement('div');
+            fakeToast.className = 'toast';
+            fakeToast.textContent = 'Tournament created (preview only)';
+            document.getElementById('toast-container').appendChild(fakeToast);
+            setTimeout(() => fakeToast.remove(), 2800);
+          });
+        }
+      })();
+    </script>
   </body>
 </html>
