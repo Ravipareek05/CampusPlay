@@ -1,0 +1,11 @@
+node 
+npm 
+bcryptjs
+cookie-parser
+cors
+dotenv
+express
+jsonwebtoken
+mongoose
+morgan
+nodemon
