@@ -595,14 +595,14 @@
 //   console.log('[app] init');
 
   // ---------- STREAMERS (data + UI) ----------
-  const streamers = [
-    // { id: 1, name: 'Harshit', game: 'Clash Royale', viewers: '12.8k', avatar: 'images/download (2).jpeg', videoUrl: 'https://www.youtube.com/embed/-DwaRcz5QvI?autoplay=1&mute=1&controls=0&loop=1&playlist=-DwaRcz5QvI' },
-    // { id: 2, name: 'Ravi',    game: 'Valorant',     viewers: '6.4k',  avatar: 'images/download (1).jpeg', videoUrl: 'https://www.youtube.com/embed/h7MYJghRWt0?si=zwYcpJYNrCCWbBDR' },
-    // { id: 3, name: 'Gaurika', game: 'BGMI',         viewers: '4.1k',  avatar: 'images/download.jpeg',      videoUrl: 'https://www.youtube.com/embed/f44f7N4RUTk?si=3PbvPXuiYdTkccd1' }
-  ];
+//   const streamers = [
+//     // { id: 1, name: 'Harshit', game: 'Clash Royale', viewers: '12.8k', avatar: 'images/download (2).jpeg', videoUrl: 'https://www.youtube.com/embed/-DwaRcz5QvI?autoplay=1&mute=1&controls=0&loop=1&playlist=-DwaRcz5QvI' },
+//     // { id: 2, name: 'Ravi',    game: 'Valorant',     viewers: '6.4k',  avatar: 'images/download (1).jpeg', videoUrl: 'https://www.youtube.com/embed/h7MYJghRWt0?si=zwYcpJYNrCCWbBDR' },
+//     // { id: 3, name: 'Gaurika', game: 'BGMI',         viewers: '4.1k',  avatar: 'images/download.jpeg',      videoUrl: 'https://www.youtube.com/embed/f44f7N4RUTk?si=3PbvPXuiYdTkccd1' }
+//   ];
 
-<<<<<<< HEAD
-=======
+// <<<<<<< HEAD
+// =======
   // ---------- SELECTORS (match your HTML) ----------
 //   const mainStreamIframe = document.getElementById('main-stream-player'); // iframe id in your HTML
 //   const streamerName       = document.getElementById('streamer-name');
@@ -809,8 +809,168 @@
   //     videoUrl: "https://www.youtube.com/embed/f44f7N4RUTk?si=3PbvPXuiYdTkccd1",
   //   },
   // ];
+// document.addEventListener("DOMContentLoaded", function () {
+// >>>>>>> 16404e38c5d63f6b8e2f17f843dcfabeabba99de
+//   // --- Element Selectors ---
+//   const mainStreamIframe = document.getElementById("main-stream-player");
+//   const streamerName = document.getElementById("streamer-name");
+//   const streamerGame = document.getElementById("stream-title");
+//   const streamerAvatar = document.getElementById("streamer-avatar");
+//   const viewersCount = document.getElementById("viewer-count");
+//   const sidebarList = document.getElementById("sidebar-stream-list");
+
+//   const loginLink = document.getElementById("login-link");
+//   const signoutLink = document.getElementById("signout-link");
+//   const userInitials = document.getElementById("user-initials");
+//   const userDropdown = document.getElementById("user-dropdown");
+//   const joinGameButtons = document.querySelectorAll(".join-game-btn");
+
+//   // NEW: Start Playing button
+//   const startPlayingBtn = document.getElementById("startPlayingBtn");
+
+//   let activeStreamerId = 1;
+
+//   // --- Safeguard: check required elements ---
+//   if (
+//     !mainStreamIframe ||
+//     !streamerName ||
+//     !streamerGame ||
+//     !streamerAvatar ||
+//     !viewersCount ||
+//     !sidebarList
+//   ) {
+//     console.warn("Stream elements missing - check IDs in HTML vs JS");
+//   }
+
+//   // --- Functions ---
+//   function updateMainStream(streamer) {
+//     if (mainStreamIframe) mainStreamIframe.src = streamer.videoUrl;
+//     if (streamerName) streamerName.textContent = streamer.name;
+//     if (streamerGame) streamerGame.textContent = streamer.game;
+//     if (streamerAvatar) streamerAvatar.src = streamer.avatar;
+//     if (viewersCount) viewersCount.textContent = `${streamer.viewers} viewers`;
+//     activeStreamerId = streamer.id;
+//     renderSidebar();
+//   }
+
+//   function renderSidebar() {
+//     if (!sidebarList) return;
+//     sidebarList.innerHTML = "";
+//     streamers.forEach((streamer) => {
+//       const isActive = streamer.id === activeStreamerId;
+//       const item = document.createElement("li");
+//       item.className = `sidebar-item ${isActive ? "active" : ""}`;
+//       item.innerHTML = `
+//         <img src="${streamer.avatar}" alt="${streamer.name}" class="sidebar-avatar">
+//         <div class="sidebar-info">
+//             <span class="sidebar-name">${streamer.name}</span>
+//             <span class="sidebar-game">${streamer.game}</span>
+//         </div>
+//         <span class="sidebar-status"></span>
+//       `;
+//       item.addEventListener("click", () => updateMainStream(streamer));
+//       sidebarList.appendChild(item);
+//     });
+//   }
+
+//   function checkAuth() {
+//     const user = localStorage.getItem("campusPlayUser");
+
+//     if (user) {
+//       if (loginLink) loginLink.style.display = "none";
+//       if (signoutLink) signoutLink.style.display = "block";
+//       try {
+//         const userObj = JSON.parse(user);
+//         if (userObj && userObj.name && userInitials) {
+//           const initials = userObj.name
+//             .split(" ")
+//             .map((n) => n[0])
+//             .join("")
+//             .toUpperCase();
+//           userInitials.textContent = initials;
+//         }
+//       } catch (e) {
+//         console.error("Error parsing user data:", e);
+//         if (userInitials) userInitials.textContent = "G";
+//       }
+//     } else {
+//       if (loginLink) loginLink.style.display = "block";
+//       if (signoutLink) signoutLink.style.display = "none";
+//       if (userInitials) userInitials.textContent = "G";
+//     }
+//   }
+
+//   // --- Initialize content ---
+//   const initialStreamer = streamers.find((s) => s.id === activeStreamerId);
+//   if (initialStreamer) updateMainStream(initialStreamer);
+//   renderSidebar();
+//   checkAuth();
+
+//   // --- Event listeners ---
+
+//   // User dropdown toggle
+//   if (userInitials && userDropdown) {
+//     userInitials.addEventListener("click", function (e) {
+//       e.stopPropagation();
+//       userDropdown.classList.toggle("open");
+//     });
+//     userInitials.addEventListener("touchstart", function (e) {
+//       e.preventDefault();
+//       e.stopPropagation();
+//       userDropdown.classList.toggle("open");
+//     });
+//   }
+
+//   // Hide dropdown when clicking outside
+//   document.addEventListener("click", function (ev) {
+//     if (userDropdown && !userDropdown.contains(ev.target)) {
+//       userDropdown.classList.remove("open");
+//     }
+//   });
+
+//   // Sign out
+//   if (signoutLink) {
+//     signoutLink.addEventListener("click", function (e) {
+//       e.preventDefault();
+//       localStorage.removeItem("campusPlayUser");
+//       localStorage.removeItem("token");
+//       window.location.href = "login.html";
+//     });
+//   }
+
+//   // Join Game buttons redirect to tournaments
+//   if (joinGameButtons && joinGameButtons.length) {
+//     joinGameButtons.forEach((button) => {
+//       button.addEventListener("click", (ev) => {
+//         ev.preventDefault();
+//         window.location.href = "tournaments.html";
+//       });
+//     });
+//   }
+
+// <<<<<<< HEAD
+//   // ✅ NEW: Start Playing button behavior
+// =======
+//   //  NEW: Start Playing button behavior
+// >>>>>>> 16404e38c5d63f6b8e2f17f843dcfabeabba99de
+//   if (startPlayingBtn) {
+//     startPlayingBtn.addEventListener("click", function (event) {
+//       event.preventDefault();
+//       const user = localStorage.getItem("campusPlayUser");
+
+//       if (user) {
+//         // User logged in → Go to tournaments page
+//         window.location.href = "tournaments.html";
+//       } else {
+//         // Not logged in → Go to login page
+//         window.location.href = "login.html";
+//       }
+//     });
+//   }
+// });
+
+
 document.addEventListener("DOMContentLoaded", function () {
->>>>>>> 16404e38c5d63f6b8e2f17f843dcfabeabba99de
   // --- Element Selectors ---
   const mainStreamIframe = document.getElementById("main-stream-player");
   const streamerName = document.getElementById("streamer-name");
@@ -948,11 +1108,7 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
-<<<<<<< HEAD
-  // ✅ NEW: Start Playing button behavior
-=======
   //  NEW: Start Playing button behavior
->>>>>>> 16404e38c5d63f6b8e2f17f843dcfabeabba99de
   if (startPlayingBtn) {
     startPlayingBtn.addEventListener("click", function (event) {
       event.preventDefault();
