@@ -180,12 +180,19 @@ img {
   display: none;
   position: absolute;
   right: 0;
-  top: 110%;
+  /* top: 110%; */
+  
+  top: 120%; /* Increased slightly to avoid overlap */
   background: #121212;
+  border: 1px solid #333; /* Added border for visibility */
+ 
   border-radius: 8px;
-  min-width: 120px;
+  /* min-width: 120px;
   box-shadow: 0 2px 12px rgba(0, 0, 0, 0.12);
-  z-index: 100;
+  z-index: 100; */
+   min-width: 150px; /* Increased min-width */
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5); /* Stronger shadow */
+  z-index: 10001; /* Very high z-index */
   padding: 8px 0;
 }
 .dropdown-item {
